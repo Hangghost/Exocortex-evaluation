@@ -4,8 +4,8 @@ axiom_name: 開分支必須顯式 base
 axiom_path: rules/axioms/a09_explicit_branch_base.md
 promoted_at: 2026-05-05
 applies_from: 2026-05-05
-human_status: uncertain
-human_reviewed_at: null
+human_status: working
+human_reviewed_at: 2026-05-19
 last_scanned_at: 2026-05-19
 total_scans: 1
 ---
@@ -48,9 +48,6 @@ total_scans: 1
 
 Repo 隔絕只解決「evaluation 結論不形成新 feedback loop」,不消除「agent 因 rule 注入改變行為」。47 條 follow 包含 fixture 跑期間 Claude(本 session)主動套用 a09 的 commits,需在 long-term 評估時切多 window 比較。
 
-**human_status proposal**
+**human_status decision (2026-05-19)**
 
-依據 0 真實違反 + 47 follow + 1 effective-safe 兩步式,**建議 `working`**;但首輪 fixture 樣本量(53 over 14 days)偏小,等下次 cron 自動 scan 累積更多資料後再 promote 自 `uncertain` → `working`。Joey 可選:
-
-- (A) 現在直接設 `working`,接受 fixture 樣本判定
-- (B) 留 `uncertain`,等 4 週後(下次 monthly review 時)累積 200+ candidates 再 promote
+Joey review dashboard 後 promote `uncertain` → `working`(選項 A):接受 fixture 樣本判定。後續 cron 累積更多資料後若出現新 violation pattern,可再降回 `partial` / `uncertain`。
