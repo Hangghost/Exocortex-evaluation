@@ -2,7 +2,7 @@
 
 - axiom: **a09**
 - window: 30 天
-- total candidates: 97
+- total candidates: 53
 
 對每個 candidate 勾選 **一個** 選項。多選或全空會被 parser 拒絕。
 
@@ -33,42 +33,6 @@
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
 ### Candidate 3
-- session: `0e3ce94f-5ed2-4d39-874e-d8fc356b72f3`
-- timestamp: 2026-04-29T17:18:44.034Z
-- command: `git checkout main && git merge --squash content/2026-04-29 && git commit -m "content: 2026-04-29 daily snapshot" && git branch -D content/2026-04-29 && git checkout -b content/2026-04-30 && echo "---" && git log --oneline -5`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/0e3ce94f-5ed2-4d39-874e-d8fc356b72f3.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 4
-- session: `1822eb6d-8b86-4ffe-b2a8-8571aebbf61b`
-- timestamp: 2026-05-01T04:05:01.151Z
-- command: `git checkout main && git checkout -b feature/add-state-audit && echo "---" && git status --short && echo "---" && git branch --show-current`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1822eb6d-8b86-4ffe-b2a8-8571aebbf61b.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 5
-- session: `195eec1d-6749-4bc0-985c-d7d0a2c21de5`
-- timestamp: 2026-04-28T20:55:22.609Z
-- command: `git checkout -b content/2026-04-29 && git stash pop`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/195eec1d-6749-4bc0-985c-d7d0a2c21de5.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 6
 - session: `20b603bb-85be-4952-9f70-e5f5e5f84204`
 - timestamp: 2026-05-05T09:58:35.363Z
 - command: `cd /Users/dj_workstation/Documents/Projects/Exocortex-personal
@@ -104,7 +68,7 @@ git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 7
+### Candidate 4
 - session: `20b603bb-85be-4952-9f70-e5f5e5f84204`
 - timestamp: 2026-05-05T10:02:49.754Z
 - command: `cd /Users/dj_workstation/Documents/Projects/Exocortex-personal
@@ -151,47 +115,11 @@ else:
 - source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/20b603bb-85be-4952-9f70-e5f5e5f84204.jsonl`
 
 - [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
+- [x] skip — false positive
+- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 8
-- session: `247f6191-ba3a-4494-9c0a-876b99725f84`
-- timestamp: 2026-05-04T05:18:36.931Z
-- command: `git checkout main && git checkout -b project/qt-ai-enablement`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/247f6191-ba3a-4494-9c0a-876b99725f84.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 9
-- session: `27273989-e1a1-49e6-8288-f3e637f6aa1e`
-- timestamp: 2026-04-29T04:57:04.233Z
-- command: `cd /Users/dj_workstation/Documents/Projects/qtm-action-potential && git checkout -b feature/dev-workflow-commands && openspec new change dev-workflow-commands`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/27273989-e1a1-49e6-8288-f3e637f6aa1e.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 10
-- session: `2940ff84-b7c8-495c-993c-c44be119b969`
-- timestamp: 2026-05-01T19:45:50.556Z
-- command: `git checkout -b feature/add-system-state-coordination`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/2940ff84-b7c8-495c-993c-c44be119b969.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 11
+### Candidate 5
 - session: `2b8f5011-0432-47bb-9041-e6b363bf099c`
 - timestamp: 2026-05-12T19:34:08.193Z
 - command: `git checkout -b content/2026-05-13 main && git add infra/state/system_state.json memory/OBSERVATIONS.md inbox/captured/heptabase/article/2026-05-12.md inbox/captured/heptabase/threads/2026-05-12.md && git commit -m "content: overnight cron writes (heptabase 2026-05-12 + observations)" && git checkout main && git merge --squash content/2026-05-13 && git commit -m "content: 2026-05-13 daily snapshot" && git branch -D content/2026-05-13 && git status --short`
@@ -203,31 +131,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 12
-- session: `336a1ede-d7c0-4b70-9958-f724ac658c8c`
-- timestamp: 2026-05-02T10:23:01.570Z
-- command: `git checkout -b feature/add-reports-publishing 2>&1`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/336a1ede-d7c0-4b70-9958-f724ac658c8c.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 13
-- session: `336a1ede-d7c0-4b70-9958-f724ac658c8c`
-- timestamp: 2026-05-02T10:27:06.620Z
-- command: `git branch -D feature/add-reports-publishing && git checkout -b feature/add-reports-publishing && git status`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/336a1ede-d7c0-4b70-9958-f724ac658c8c.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 14
+### Candidate 6
 - session: `37afc943-2234-408d-9263-f9918fd7242d`
 - timestamp: 2026-05-08T03:30:57.684Z
 - command: `git checkout main && git checkout -b feature/add-project-worktree-flow main`
@@ -239,19 +143,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 15
-- session: `396d9e6f-6483-4264-a10a-6d0df4a0d648`
-- timestamp: 2026-04-28T20:57:43.967Z
-- command: `git checkout -b project/yoga-cs-agent main && git branch --show-current`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/396d9e6f-6483-4264-a10a-6d0df4a0d648.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 16
+### Candidate 7
 - session: `3d51fd37-3859-4727-b594-1bdac3bb5843`
 - timestamp: 2026-05-07T02:18:21.629Z
 - command: `git checkout -b feature/add-project-update-milestone-hint main && git rev-parse --abbrev-ref HEAD && git status --short`
@@ -263,31 +155,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 17
-- session: `409f999f-a95a-4f23-acfe-a3da247899b8`
-- timestamp: 2026-05-01T02:00:04.644Z
-- command: `git checkout -b feature/add-threads-polish-skill main 2>&1 && echo "---" && git status --short && echo "---" && git branch --show-current`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/409f999f-a95a-4f23-acfe-a3da247899b8.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 18
-- session: `409f999f-a95a-4f23-acfe-a3da247899b8`
-- timestamp: 2026-05-01T02:07:57.501Z
-- command: `git checkout -b content/2026-05-01 && git add inbox/ideas.md && git commit -m "ideas: add observer Date validation extension to work_logs/surveys" && echo "---" && git log -1 --oneline && echo "---" && git branch --show-current`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/409f999f-a95a-4f23-acfe-a3da247899b8.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 19
+### Candidate 8
 - session: `41615cbf-c16c-41cf-8d17-786918e68594`
 - timestamp: 2026-05-09T23:34:35.775Z
 - command: `git checkout -b feature/ctx-onboard-inbox-reconciliation main && git status --short`
@@ -299,7 +167,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 20
+### Candidate 9
 - session: `4503f597-9870-4fdf-90be-fae47703174f`
 - timestamp: 2026-05-10T00:25:20.385Z
 - command: `git checkout -b feature/tune-cc-hooks-capture main && git branch --show-current`
@@ -311,7 +179,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 21
+### Candidate 10
 - session: `4580de44-8110-4874-91c8-8f437ba0c43a`
 - timestamp: 2026-05-12T01:33:43.692Z
 - command: `git checkout -b content/2026-05-12 main 2>&1 && echo "---" && git status --short`
@@ -323,19 +191,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 22
-- session: `4b2817b6-66eb-42ec-b91d-ff6c0fae28ee`
-- timestamp: 2026-04-26T01:59:06.816Z
-- command: `git checkout -b content/2026-04-26`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/4b2817b6-66eb-42ec-b91d-ff6c0fae28ee.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 23
+### Candidate 11
 - session: `4c22d469-0827-46bf-96f8-960944989a15`
 - timestamp: 2026-05-06T02:29:45.254Z
 - command: `git checkout -b content/2026-05-06 main && git add memory/OBSERVATIONS.md infra/state/system_state.json inbox/captured/2026-05-05_state_audit.md && git commit -m "content: 2026-05-06 daily snapshot (overnight cron)"`
@@ -347,7 +203,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 24
+### Candidate 12
 - session: `4c22d469-0827-46bf-96f8-960944989a15`
 - timestamp: 2026-05-06T02:34:20.240Z
 - command: `git checkout -b feature/onboard-command main && git status --short`
@@ -359,7 +215,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 25
+### Candidate 13
 - session: `4c64fee0-6241-4dec-9fbd-8f5bce74b70c`
 - timestamp: 2026-05-11T02:02:43.186Z
 - command: `git checkout -b content/2026-05-11 main && git add contexts/work_logs/2026-05-10_qheart-ap_update2.md && git commit -m "logs: add work log for qheart-ap update (2026-05-10)" && git checkout main && echo "---" && git log --oneline -3 content/2026-05-11`
@@ -371,7 +227,7 @@ else:
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 26
+### Candidate 14
 - session: `4d322105-5cef-4686-b7e5-fd8bfc3a77fb`
 - timestamp: 2026-05-18T07:21:49.866Z
 - command: `git checkout -b project/career-growth-3y main && \
@@ -389,7 +245,7 @@ git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 27
+### Candidate 15
 - session: `4eee95f6-5635-421f-ae37-85a325b1200b`
 - timestamp: 2026-05-10T08:31:28.687Z
 - command: `git checkout -b feature/route-project-update-to-project-branch main && \
@@ -402,7 +258,7 @@ echo "---" && git branch --show-current && git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 28
+### Candidate 16
 - session: `540cbbb7-94ff-499c-a145-f57afcf1417e`
 - timestamp: 2026-05-09T12:08:05.373Z
 - command: `git checkout -b content/2026-05-09 main && git add memory/OBSERVATIONS.md && git commit -m "mem: update observations - 2026-05-09 cc-hooks-capture architecture pivot + meta findings"`
@@ -414,7 +270,7 @@ echo "---" && git branch --show-current && git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 29
+### Candidate 17
 - session: `540cbbb7-94ff-499c-a145-f57afcf1417e`
 - timestamp: 2026-05-09T13:36:08.724Z
 - command: `git checkout -b feature/fix-stale-running-role main && git status --short`
@@ -426,7 +282,7 @@ echo "---" && git branch --show-current && git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 30
+### Candidate 18
 - session: `540cbbb7-94ff-499c-a145-f57afcf1417e`
 - timestamp: 2026-05-09T13:59:26.448Z
 - command: `git checkout main && git checkout -b content/2026-05-09 main`
@@ -438,115 +294,7 @@ echo "---" && git branch --show-current && git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 31
-- session: `5437c7dc-a78d-4fd8-a0bf-5ee2d761bcc4`
-- timestamp: 2026-04-26T08:05:36.450Z
-- command: `git checkout main && git checkout -b project/gcp-ace-cert`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/5437c7dc-a78d-4fd8-a0bf-5ee2d761bcc4.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 32
-- session: `6804494e-9426-4b24-aa49-88ad4ca3df59`
-- timestamp: 2026-04-28T02:30:51.866Z
-- command: `git checkout main && git checkout -b content/2026-04-28`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6804494e-9426-4b24-aa49-88ad4ca3df59.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 33
-- session: `6c7d9604-2eb7-4687-892a-216bf1dadd17`
-- timestamp: 2026-05-04T01:41:37.263Z
-- command: `git checkout main && git checkout -b content/2026-05-04 && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 34
-- session: `6c7d9604-2eb7-4687-892a-216bf1dadd17`
-- timestamp: 2026-05-04T01:41:45.621Z
-- command: `git stash push -u -m "ctx-eod-route-to-today" && git checkout main && git checkout -b content/2026-05-04 && git stash pop && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 35
-- session: `6c7d9604-2eb7-4687-892a-216bf1dadd17`
-- timestamp: 2026-05-04T01:44:48.633Z
-- command: `git branch -D content/2026-05-03 && git checkout -b content/2026-05-04 && git stash pop && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 36
-- session: `6c7d9604-2eb7-4687-892a-216bf1dadd17`
-- timestamp: 2026-05-04T09:29:15.333Z
-- command: `git checkout -b feature/add-conversation-capture && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 37
-- session: `74522efc-bf53-4057-9daf-5241dc71c055`
-- timestamp: 2026-04-21T11:56:19.413Z
-- command: `git checkout -b work/2026-04-21-wwpf-screening origin/work/2026-04-21-wwpf-screening`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/74522efc-bf53-4057-9daf-5241dc71c055.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 38
-- session: `74522efc-bf53-4057-9daf-5241dc71c055`
-- timestamp: 2026-04-21T11:57:26.077Z
-- command: `git stash && git checkout -b work/2026-04-21-wwpf-screening origin/work/2026-04-21-wwpf-screening`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/74522efc-bf53-4057-9daf-5241dc71c055.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 39
-- session: `7d9243d3-c141-46b8-b8d0-ae49a1a71b6a`
-- timestamp: 2026-05-01T08:36:27.911Z
-- command: `git checkout -b feature/fix-feature-branch-arch-routing && git status`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/7d9243d3-c141-46b8-b8d0-ae49a1a71b6a.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 40
+### Candidate 19
 - session: `80c8fb96-03c0-4db9-969f-3ffb07fd023b`
 - timestamp: 2026-05-06T08:43:28.605Z
 - command: `git checkout main 2>&1 | tail -3 && git checkout -b feature/heptabase-ingest-pipeline 2>&1 | tail -3 && git stash pop 2>&1 | tail -10 && echo "---status---" && git status --short`
@@ -558,53 +306,7 @@ echo "---" && git branch --show-current && git status --short`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 41
-- session: `84023922-ed19-40c8-bbc2-a8c6a5e3444b`
-- timestamp: 2026-05-04T17:36:16.044Z
-- command: `today=$(date +%Y-%m-%d)
-echo "today: $today"
-if git rev-parse --verify content/$today >/dev/null 2>&1; then
-  echo "content/$today exists, checking out"
-  git checkout content/$today
-else
-  echo "content/$today does not exist, creating from main"
-  git checkout -b content/$today main
-fi
-echo "---"
-git branch --show-current`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 42
-- session: `84023922-ed19-40c8-bbc2-a8c6a5e3444b`
-- timestamp: 2026-05-04T17:39:29.102Z
-- command: `git checkout main && git branch -D content/2026-05-05 && git checkout -b content/2026-05-05 main && echo "---" && echo "new content/2026-05-05 head:" && git rev-parse HEAD && echo "main head:" && git rev-parse main`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 43
-- session: `84023922-ed19-40c8-bbc2-a8c6a5e3444b`
-- timestamp: 2026-05-04T17:56:09.054Z
-- command: `git status --short && echo "---" && git checkout -b feature/fix-eod-step-ordering main && echo "---" && git status --short`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 44
+### Candidate 20
 - session: `85a4f091-1f5e-4580-805f-925e5c13d3db`
 - timestamp: 2026-05-14T11:39:29.535Z
 - command: `git checkout -b content/2026-05-14 main && git status --short && echo "---" && git push origin main`
@@ -616,7 +318,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 45
+### Candidate 21
 - session: `85a4f091-1f5e-4580-805f-925e5c13d3db`
 - timestamp: 2026-05-14T11:39:39.157Z
 - command: `git checkout -b content/2026-05-14 main && git status --short`
@@ -628,7 +330,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 46
+### Candidate 22
 - session: `86476cce-b66b-4ed2-9a78-160ecb48f88f`
 - timestamp: 2026-05-13T18:05:41.651Z
 - command: `git checkout -b content/2026-05-14 main && git add infra/state/system_state.json memory/OBSERVATIONS.md inbox/captured/heptabase/threads/2026-05-13.md && git commit -m "content: nightly observer + heptabase capture 2026-05-14" && git log --oneline -3`
@@ -640,7 +342,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 47
+### Candidate 23
 - session: `8bcffd6a-6113-4fb2-b4eb-2719d9819537`
 - timestamp: 2026-05-13T21:28:58.396Z
 - command: `git branch project/exocortex-gtm main && echo "BRANCH_CREATED"`
@@ -652,67 +354,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 48
-- session: `8f53653a-2ddd-4024-a515-711c232b65fb`
-- timestamp: 2026-05-03T02:14:55.900Z
-- command: `git checkout -b content/2026-05-03 main && git status --short`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/8f53653a-2ddd-4024-a515-711c232b65fb.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 49
-- session: `9677ec10-891b-4df7-b50d-5a07ef0524d8`
-- timestamp: 2026-05-01T11:16:43.574Z
-- command: `current=$(git branch --show-current); today=$(date +%Y-%m-%d); echo "current=$current today=$today"; if [ "$current" != "content/$today" ]; then if git rev-parse --verify content/$today >/dev/null 2>&1; then git checkout content/$today; else git checkout -b content/$today main; fi; fi; git branch --show-current`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9677ec10-891b-4df7-b50d-5a07ef0524d8.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 50
-- session: `9d0520b6-0641-4571-9272-4f74085cc65d`
-- timestamp: 2026-04-28T06:36:35.051Z
-- command: `git checkout main && git branch -D feature/axioms-a05-t07-t10 && git checkout -b feature/axioms-a05-t07-t10 && git cherry-pick d87550d`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9d0520b6-0641-4571-9272-4f74085cc65d.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 51
-- session: `a31b1914-ad6c-49e6-8762-7d29b89d44bd`
-- timestamp: 2026-04-22T04:11:06.213Z
-- command: `git checkout -b content/2026-04-22 && git add contexts/survey_sessions/2026-04-22_ai-customer-service-vendors-survey.md contexts/survey_sessions/evolver-insight.html contexts/survey_sessions/evolver-insight.md && git commit -m "docs: add AI 客服 vendors survey，移除 evolver-insight 重複稿"`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/a31b1914-ad6c-49e6-8762-7d29b89d44bd.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 52
-- session: `a4efdf52-c56f-4352-960e-5224e2de9eaa`
-- timestamp: 2026-05-01T21:22:42.891Z
-- command: `git checkout -b feature/changelog-0.10-0.11`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/a4efdf52-c56f-4352-960e-5224e2de9eaa.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 53
+### Candidate 24
 - session: `ac059835-169d-43b3-9e2c-930891b6985f`
 - timestamp: 2026-05-08T05:17:50.499Z
 - command: `git branch project/wwpf-qd main && echo "BRANCH_CREATED" && git worktree add ~/Documents/Projects/Exocortex-worktrees/wwpf-qd project/wwpf-qd 2>&1`
@@ -724,7 +366,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 54
+### Candidate 25
 - session: `b080c6f1-ba98-457a-a47d-9764d639cead`
 - timestamp: 2026-05-13T18:05:41.651Z
 - command: `git checkout -b content/2026-05-14 main && git add infra/state/system_state.json memory/OBSERVATIONS.md inbox/captured/heptabase/threads/2026-05-13.md && git commit -m "content: nightly observer + heptabase capture 2026-05-14" && git log --oneline -3`
@@ -736,7 +378,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 55
+### Candidate 26
 - session: `b080c6f1-ba98-457a-a47d-9764d639cead`
 - timestamp: 2026-05-13T18:56:51.497Z
 - command: `git checkout main && git checkout -b feature/add-personal-skills-layer main && git cherry-pick c055429 && git log --oneline -3`
@@ -748,7 +390,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 56
+### Candidate 27
 - session: `b080c6f1-ba98-457a-a47d-9764d639cead`
 - timestamp: 2026-05-13T21:25:45.577Z
 - command: `ssh macbook 'cd ~/Documents/Procjects/Exocortex-personal && git checkout -b feature/add-personal-skills-layer origin/feature/add-personal-skills-layer 2>&1 | tail -5 && git log --oneline -3'`
@@ -760,7 +402,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 57
+### Candidate 28
 - session: `b080c6f1-ba98-457a-a47d-9764d639cead`
 - timestamp: 2026-05-13T21:51:36.459Z
 - command: `git checkout -b feature/migrate-skills-to-personal main && git merge --ff-only worktree-migrate-skills && git worktree remove .claude/worktrees/migrate-skills && git branch -d worktree-migrate-skills && git log --oneline -3`
@@ -772,7 +414,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 58
+### Candidate 29
 - session: `b6b7ca85-4b96-414c-9a3d-293f85c35e8b`
 - timestamp: 2026-05-13T11:39:13.881Z
 - command: `cd ~/Documents/Projects/Exocortex-personal && git checkout -b content/2026-05-13 main && git branch --show-current`
@@ -784,43 +426,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 59
-- session: `b7df301e-9d33-45c8-9f5d-df36b6fc2b39`
-- timestamp: 2026-04-23T20:41:26.552Z
-- command: `git checkout -b content/2026-04-24`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b7df301e-9d33-45c8-9f5d-df36b6fc2b39.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 60
-- session: `b818b1c8-09e0-4c5b-a577-b00d0cb3f277`
-- timestamp: 2026-04-29T20:01:13.695Z
-- command: `git checkout main && git branch --list "project/agent-security-hacker" && echo "---" && git checkout -b project/agent-security-hacker && git branch --show-current && echo "---" && mkdir -p projects/agent-security-hacker/context && ls projects/agent-security-hacker/`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b818b1c8-09e0-4c5b-a577-b00d0cb3f277.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 61
-- session: `b818b1c8-09e0-4c5b-a577-b00d0cb3f277`
-- timestamp: 2026-04-29T21:52:20.944Z
-- command: `git checkout main && git checkout -b feature/evomap-gene-capsule-alignment && echo "---POPPING---" && git stash pop stash@{0} && echo "---STATUS---" && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b818b1c8-09e0-4c5b-a577-b00d0cb3f277.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 62
+### Candidate 30
 - session: `ba23d339-ffa4-4b90-bfbf-50bc559eddfe`
 - timestamp: 2026-05-06T20:25:00.702Z
 - command: `git checkout -b content/2026-05-07 main && git add memory/OBSERVATIONS.md infra/state/system_state.json inbox/captured/2026-05-06_state_audit.md && git commit -m "mem: overnight observations + 2026-05-06 audit snapshot"`
@@ -832,7 +438,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 63
+### Candidate 31
 - session: `ba23d339-ffa4-4b90-bfbf-50bc559eddfe`
 - timestamp: 2026-05-06T21:08:39.096Z
 - command: `git checkout main && git checkout -b feature/add-role-failure-watch main && echo "---status---" && git status --short`
@@ -844,7 +450,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 64
+### Candidate 32
 - session: `bcc4de2a-a541-433e-802c-a5b12bb7c33d`
 - timestamp: 2026-05-15T05:12:59.688Z
 - command: `git branch project/resume-refresh main && git worktree add .claude/worktrees/resume-refresh project/resume-refresh 2>&1`
@@ -856,7 +462,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 65
+### Candidate 33
 - session: `bcc4de2a-a541-433e-802c-a5b12bb7c33d`
 - timestamp: 2026-05-15T08:04:14.677Z
 - command: `git branch project/freelance-job-hunt-2026q2 main && git worktree add ../freelance-job-hunt-2026q2 project/freelance-job-hunt-2026q2 2>&1 | tail -3 && cd ../freelance-job-hunt-2026q2 && pwd && mkdir -p projects/freelance-job-hunt-2026q2/context`
@@ -868,7 +474,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 66
+### Candidate 34
 - session: `beae7e34-d1e7-4708-8583-0ca13a0630c1`
 - timestamp: 2026-05-09T10:13:59.510Z
 - command: `git checkout -b feature/add-cc-hooks-capture main && git status --short && echo "---" && ls openspec/changes/add-cc-hooks-capture/`
@@ -880,7 +486,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 67
+### Candidate 35
 - session: `bf9a3c59-f42c-4e8d-bb96-a5faf84915e4`
 - timestamp: 2026-05-11T08:46:28.690Z
 - command: `git checkout -b content/2026-05-11 main && git add contexts/work_logs/2026-05-11_qt-ai-enablement_qes-114-multi-app-foundation-task1-to-5.md && git commit -m "logs: add work log for QES-114 multi-app foundation task1-5" && git checkout main && git log -1 content/2026-05-11 --oneline`
@@ -892,7 +498,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 68
+### Candidate 36
 - session: `bf9a3c59-f42c-4e8d-bb96-a5faf84915e4`
 - timestamp: 2026-05-11T09:49:22.017Z
 - command: `git checkout -b feature/add-inbox-digest-pipeline main && git branch --show-current && echo "---" && git status --short`
@@ -904,48 +510,7 @@ git branch --show-current`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 69
-- session: `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72`
-- timestamp: 2026-05-04T19:07:45.959Z
-- command: `git checkout -b feature/guard-arch-feature-branch-from-main && git status`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c5f9f6eb-e42a-4d28-ab00-0a880b88fb72.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 70
-- session: `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72`
-- timestamp: 2026-05-04T19:16:36.638Z
-- command: `git commit -m "$(cat <<'EOF'
-feat(ctx:arch): add Step 1.5 branch guard before opening feature/* branch
-
-Guard 在 /opsx:propose 完成、git checkout -b feature/<name> 之前介入：
-- HEAD detached / 在 feature/* → abort（前者引導 checkout main，後者引導收尾上一個 feature）
-- HEAD 在 main 但 behind origin/main → 自動 git pull --ff-only origin main
-- HEAD 在 project/<x> 或 content/<date> → 列出 ahead/behind 並詢問是否切 main
-純討論流程不會走到此步，guard 不觸發。
-
-新增 capability spec: ctx-arch-command（互斥檢查 / explore+propose 委派 /
-branch guard 6 scenarios / Step 2 提示 / 不直接改 rules）。
-
-Refs: 2026-05-02 開 feature/add-reports-publishing 時 HEAD 在
-project/yoga-cs-agent，feature 分支落後 main 並繼承 5 個非預期 commits。
-
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
-EOF
-)"`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c5f9f6eb-e42a-4d28-ab00-0a880b88fb72.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [x] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 71
+### Candidate 37
 - session: `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72`
 - timestamp: 2026-05-05T03:37:43.412Z
 - command: `git checkout -b feature/fix-state-audit-read-from-main main && git status --short && git branch --show-current`
@@ -957,7 +522,7 @@ EOF
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 72
+### Candidate 38
 - session: `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72`
 - timestamp: 2026-05-05T05:36:51.206Z
 - command: `git checkout -b feature/enforce-explicit-branch-base main && git status --short && git branch --show-current`
@@ -969,7 +534,7 @@ EOF
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 73
+### Candidate 39
 - session: `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72`
 - timestamp: 2026-05-05T06:05:22.316Z
 - command: `git commit -m "$(cat <<'EOF'
@@ -1008,19 +573,7 @@ EOF
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 74
-- session: `c7aae979-25df-4118-9ea7-d0aabaf7c679`
-- timestamp: 2026-05-01T09:01:30.920Z
-- command: `git checkout -b feature/spec-migrate-1.2`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c7aae979-25df-4118-9ea7-d0aabaf7c679.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 75
+### Candidate 40
 - session: `d604463a-8314-465b-a22b-62c9a176e60d`
 - timestamp: 2026-05-10T04:04:13.733Z
 - command: `git checkout -b feature/prune-l0-capture-pipeline main 2>&1 && echo "---" && git status --short && echo "---" && git branch --show-current`
@@ -1032,7 +585,7 @@ EOF
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 76
+### Candidate 41
 - session: `d8ea5c7c-53e6-47cb-a22f-c8d76fef85af`
 - timestamp: 2026-05-15T09:03:14.663Z
 - command: `cat > /Users/dj_workstation/Documents/Projects/Exocortex/rules/WORKSPACE.md <<'EOF'
@@ -1209,7 +762,7 @@ echo "✓ WORKSPACE.md written ($(wc -l < /Users/dj_workstation/Documents/Projec
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 77
+### Candidate 42
 - session: `d8ea5c7c-53e6-47cb-a22f-c8d76fef85af`
 - timestamp: 2026-05-15T09:07:43.914Z
 - command: `cat > /Users/dj_workstation/Documents/Projects/Exocortex/rules/ARCHITECTURE.md <<'EOF'
@@ -1639,43 +1192,7 @@ echo "✓ ARCHITECTURE.md written ($(wc -l < /Users/dj_workstation/Documents/Pro
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 78
-- session: `e443446e-e9d4-4db6-9ffc-b269835f0632`
-- timestamp: 2026-05-01T21:45:28.399Z
-- command: `git checkout main && git checkout -b project/ghost-blog-optimization && mkdir -p projects/ghost-blog-optimization/context`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 79
-- session: `e443446e-e9d4-4db6-9ffc-b269835f0632`
-- timestamp: 2026-05-01T22:12:19.218Z
-- command: `cd /Users/dj_workstation/Documents/Projects/ghost-blog-dev/ && git checkout -b feature/fix-ghost-collection-routes && git add frontend/src/app/page.tsx frontend/src/app/insights/page.tsx 'frontend/src/app/post/[slug]/page.tsx' 'frontend/src/app/[slug]/page.tsx' 'frontend/src/app/insights/[slug]/page.tsx' frontend/src/components/PostPage.tsx && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 80
-- session: `e443446e-e9d4-4db6-9ffc-b269835f0632`
-- timestamp: 2026-05-01T23:37:39.243Z
-- command: `git checkout main && git checkout -b content/2026-05-02 && git stash pop stash@{1} && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 81
+### Candidate 43
 - session: `e5907a06-9edd-46fd-9175-86786c6a573a`
 - timestamp: 2026-05-10T06:20:34.011Z
 - command: `cd /Users/dj_workstation/Documents/Projects/qt-ap && git stash push -m "WIP: gitignore log rules (QES-112 branch)" -- .gitignore && echo "---stash list---" && git stash list && echo "---fetch main---" && git fetch origin main 2>&1 | tail -5 && echo "---checkout main---" && git checkout main && echo "---branch from main---" && git checkout -b docs/api-v3.1-update && git status -sb`
@@ -1684,10 +1201,10 @@ echo "✓ ARCHITECTURE.md written ($(wc -l < /Users/dj_workstation/Documents/Pro
 
 - [ ] approve — 送 LLM judge
 - [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
+- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
+- [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 82
+### Candidate 44
 - session: `e7bd35b5-0166-48fc-aaca-4453c72c71e7`
 - timestamp: 2026-05-14T17:51:30.303Z
 - command: `git checkout -b content/2026-05-15 main && \
@@ -1704,7 +1221,7 @@ git status --short && echo "---STAGED ABOVE---"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 83
+### Candidate 45
 - session: `e7bd35b5-0166-48fc-aaca-4453c72c71e7`
 - timestamp: 2026-05-14T18:09:27.584Z
 - command: `git checkout -b feature/fix-onboard-step4-existence-check main && git branch --show-current`
@@ -1716,7 +1233,7 @@ git status --short && echo "---STAGED ABOVE---"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 84
+### Candidate 46
 - session: `ea92cb20-0b1a-4143-b44e-bfbf56f0ca1c`
 - timestamp: 2026-05-08T01:15:21.194Z
 - command: `git checkout -b content/2026-05-08 main`
@@ -1728,7 +1245,7 @@ git status --short && echo "---STAGED ABOVE---"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 85
+### Candidate 47
 - session: `eb00185d-305b-4920-97fd-0e39a46293de`
 - timestamp: 2026-05-15T04:11:51.924Z
 - command: `git checkout -b content/test-pre-guard main && echo "---post-switch---" && source infra/state/session_mode.sh && echo "IS_BG=$IS_BG IN_WORKTREE=$IN_WORKTREE WORKTREE_BRANCH=$WORKTREE_BRANCH" && echo "---triple-check---" && [ "$IS_BG" = "true" ] && [ "$IN_WORKTREE" = "false" ] && [ "$WORKTREE_BRANCH" = "main" ] && echo "ALL_THREE_MET" || echo "AT_LEAST_ONE_MISSING → pre-guard 應 skip" && echo "---pre-guard exists on this branch?---" && grep -c "bg-mode pre-guard" .claude/commands/ctx/project.md`
@@ -1740,55 +1257,7 @@ git status --short && echo "---STAGED ABOVE---"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 86
-- session: `eeca9fe4-003f-45a0-be77-d620f2949ac8`
-- timestamp: 2026-04-24T04:00:56.354Z
-- command: `git checkout -b feature/docs-housekeeping-2026-04-24 && git add CHANGELOG.md rules/ARCHITECTURE.md rules/WORKSPACE.md rules/skills/INDEX.md .claude/skills/doc-formatter/SKILL.md rules/skills/doc-formatter/ rules/skills/zh-polish/ && echo "---staged---" && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/eeca9fe4-003f-45a0-be77-d620f2949ac8.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 87
-- session: `eeca9fe4-003f-45a0-be77-d620f2949ac8`
-- timestamp: 2026-04-24T04:02:54.753Z
-- command: `git checkout -b content/2026-04-24 && git add contexts/blog/2026-04-24_claude-code-postmortem-short.md contexts/blog/2026-04-24_claude-code-postmortem.md contexts/thought_review/2026-04-24_zh-polish-skill-eval.md contexts/work_logs/2026-04-24_exocortex-dev_daily-usage-reference.md && git commit -m "content: 2026-04-24 drop — claude-code postmortem、zh-polish eval、daily usage ref" && echo "---return to main---" && git checkout main && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/eeca9fe4-003f-45a0-be77-d620f2949ac8.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 88
-- session: `f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a`
-- timestamp: 2026-05-01T11:54:18.672Z
-- command: `git checkout -b feature/extend-state-audit-remote-aware && git status --short && git branch --show-current`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 89
-- session: `f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a`
-- timestamp: 2026-05-01T13:23:38.259Z
-- command: `git rev-parse --verify content/2026-05-01 2>/dev/null && git checkout content/2026-05-01 || git checkout -b content/2026-05-01 main; git branch --show-current`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 90
+### Candidate 48
 - session: `f72b06b4-8dfc-4b34-b722-a4157e070662`
 - timestamp: 2026-05-14T07:38:02.886Z
 - command: `git worktree remove /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/feature+cross-worktree-hooks-resolution 2>&1 && git branch -d feature/cross-worktree-hooks-resolution 2>&1 && echo '---worktree list---' && git worktree list 2>&1 && echo '---branches---' && git branch 2>&1 | grep -E "^\*|feature/cross-worktree"`
@@ -1796,11 +1265,11 @@ git status --short && echo "---STAGED ABOVE---"`
 - source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f72b06b4-8dfc-4b34-b722-a4157e070662.jsonl`
 
 - [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
+- [x] skip — false positive
+- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [ ] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 91
+### Candidate 49
 - session: `f787c58f-88ea-4626-934d-5ea39fdf614b`
 - timestamp: 2026-05-13T03:03:54.336Z
 - command: `git checkout -b content/2026-05-13 main && git add contexts/work_logs/2026-05-13_qheart-ap_offline-build-test-infrastructure.md && git commit -m "logs: qheart-ap offline build/test 基礎建設（QES-114 Task 8 實證）" && echo "---SHA---" && git log --oneline -1 && echo "---SWITCH BACK---" && git checkout main && git branch --show-current`
@@ -1812,7 +1281,7 @@ git status --short && echo "---STAGED ABOVE---"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 92
+### Candidate 50
 - session: `f787c58f-88ea-4626-934d-5ea39fdf614b`
 - timestamp: 2026-05-13T04:42:47.369Z
 - command: `echo "=== cleanup stale scaffold from first openspec new ==="
@@ -1833,7 +1302,7 @@ echo "---" && git diff --stat HEAD~1 HEAD`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 93
+### Candidate 51
 - session: `f787c58f-88ea-4626-934d-5ea39fdf614b`
 - timestamp: 2026-05-13T06:04:44.506Z
 - command: `echo "=== preflight: SHA references ==="
@@ -1858,7 +1327,7 @@ git log origin/main..main --oneline`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 94
+### Candidate 52
 - session: `f787c58f-88ea-4626-934d-5ea39fdf614b`
 - timestamp: 2026-05-13T06:05:10.636Z
 - command: `echo "=== step 4-5: recreate feature, rebase onto new main ==="
@@ -1885,36 +1354,12 @@ echo "main new tip: $(git rev-parse HEAD)"`
 - [ ] manual_violation — 人標 confirmed violation,跳過 LLM
 - [x] manual_compliance — 人標 follow,跳過 LLM
 
-### Candidate 95
+### Candidate 53
 - session: `facae6a3-97bd-4cb4-bad8-5c06c33a7216`
 - timestamp: 2026-05-08T23:23:59.903Z
 - command: `git checkout -b content/2026-05-09 main 2>&1 && git add infra/state/system_state.json contexts/work_logs/2026-05-08_exocortex-dev_update.md contexts/work_logs/2026-05-08_qt-ai-enablement_mr-split-pacs-v13-and-multibinary-refactor.md inbox/captured/2026-05-08_state_audit.md inbox/captured/heptabase/article/2026-05-08.md 2>&1 && git status --short 2>&1`
 - has_explicit_base: **True** (✓ has explicit base)
 - source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/facae6a3-97bd-4cb4-bad8-5c06c33a7216.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [ ] manual_violation — 人標 confirmed violation,跳過 LLM
-- [x] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 96
-- session: `fb4187de-4478-4672-b1c7-ff49e717ba39`
-- timestamp: 2026-04-23T20:26:08.152Z
-- command: `git checkout main && git checkout -b feature/add-project-branch-flow && git status --short`
-- has_explicit_base: **False** (⚠ potential violation)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/fb4187de-4478-4672-b1c7-ff49e717ba39.jsonl`
-
-- [ ] approve — 送 LLM judge
-- [ ] skip — false positive
-- [x] manual_violation — 人標 confirmed violation,跳過 LLM
-- [ ] manual_compliance — 人標 follow,跳過 LLM
-
-### Candidate 97
-- session: `fb4187de-4478-4672-b1c7-ff49e717ba39`
-- timestamp: 2026-04-23T20:28:37.076Z
-- command: `git branch project/test-split main && git branch --list 'project/*' 'content/*' 'feature/*' && echo "---status---" && git status --short`
-- has_explicit_base: **True** (✓ has explicit base)
-- source: `/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/fb4187de-4478-4672-b1c7-ff49e717ba39.jsonl`
 
 - [ ] approve — 送 LLM judge
 - [ ] skip — false positive

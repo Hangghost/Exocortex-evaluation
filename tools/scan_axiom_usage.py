@@ -108,6 +108,34 @@ def scan_a09(cmd: str) -> tuple[bool, bool] | None:
 
 SCANNERS = {"a09": scan_a09}
 
+# axiom_id → card filename within axioms/
+AXIOM_CARD_FILES = {"a09": "a09_explicit_branch_base.md"}
+
+
+def read_applies_from(axiom_id: str, repo_root: Path) -> datetime | None:
+    """Read applies_from from axiom card frontmatter; None if absent."""
+    fname = AXIOM_CARD_FILES.get(axiom_id)
+    if not fname:
+        return None
+    card = repo_root / "axioms" / fname
+    if not card.exists():
+        return None
+    text = card.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        return None
+    end = text.find("\n---\n", 4)
+    if end == -1:
+        return None
+    for line in text[4:end].splitlines():
+        if line.startswith("applies_from:"):
+            v = line.split(":", 1)[1].strip()
+            if v and v != "null":
+                try:
+                    return datetime.fromisoformat(v).replace(tzinfo=timezone.utc)
+                except ValueError:
+                    return None
+    return None
+
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Stage 1 axiom evidence scanner")
@@ -138,7 +166,11 @@ def main() -> int:
     else:
         jsonls = sorted(tdir.glob("*.jsonl"))
 
-    cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
+    days_cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
+    applies_from = read_applies_from(args.axiom, Path(__file__).resolve().parent.parent)
+    cutoff = max(days_cutoff, applies_from) if applies_from else days_cutoff
+    if applies_from and applies_from > days_cutoff:
+        print(f"info: applies_from={applies_from.date()} narrows window from {days_cutoff.date()}", file=sys.stderr)
     candidates: list[Candidate] = []
 
     for jsonl in jsonls:
@@ -172,6 +204,8 @@ def main() -> int:
         "axiom_id": args.axiom,
         "scan_date": label,
         "window_days": args.days,
+        "applies_from": applies_from.date().isoformat() if applies_from else None,
+        "effective_cutoff": cutoff.isoformat(),
         "transcript_dir": str(tdir),
         "total_candidates": len(candidates),
         "candidates": [asdict(c) for c in candidates],

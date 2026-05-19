@@ -12,6 +12,7 @@ axiom_id: a09                                  # 對應 Exocortex rules/axioms/<
 axiom_name: 開分支必須顯式 base                # 人類可讀名稱
 axiom_path: rules/axioms/a09_explicit_branch_base.md  # 相對於 Exocortex repo
 promoted_at: 2026-XX-XX                        # axiom 被 Reflector promote 的日期（人填）
+applies_from: 2026-XX-XX                       # 觀測起算日（scanner 過濾掉此日期前的事件;通常等於 promoted_at）
 last_scanned_at: 2026-05-19                    # 最近一次 Stage 1 scan 的日期
 total_scans: 1                                 # 累計 scan 次數
 human_status: uncertain                        # working | partial | obsolete | uncertain
@@ -25,6 +26,12 @@ human_reviewed_at: null                        # 最近一次人 review 並更�
 - `partial`：部分場景 follow，某些 corner case 經常違反，可改寫
 - `obsolete`：N 週 zero trigger 或全違反，候選 demote
 - `uncertain`：首輪試點 / 資料不足
+
+### `applies_from` 用途
+
+Axiom promote 前的歷史事件不該算違反(promote 前 agent 不知道規則)。Scanner 讀此欄位後,window cutoff 取較晚者 `max(today - days, applies_from)`。
+
+通常 `applies_from` 等於 `promoted_at`;若 axiom promote 後有一段 grace period(例如先公告兩週再 enforce),`applies_from` 可比 `promoted_at` 晚。
 
 ### 不允許的欄位
 

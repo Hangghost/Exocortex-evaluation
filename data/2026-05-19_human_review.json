@@ -1,7 +1,7 @@
 {
   "axiom_id": "a09",
   "scan_date": "2026-05-19",
-  "reviewed_at": "2026-05-19T08:35:26",
+  "reviewed_at": "2026-05-19T09:08:19",
   "reviewed": [
     {
       "axiom_id": "a09",
@@ -25,36 +25,6 @@
     },
     {
       "axiom_id": "a09",
-      "session_id": "0e3ce94f-5ed2-4d39-874e-d8fc356b72f3",
-      "timestamp": "2026-04-29T17:18:44.034Z",
-      "command": "git checkout main && git merge --squash content/2026-04-29 && git commit -m \"content: 2026-04-29 daily snapshot\" && git branch -D content/2026-04-29 && git checkout -b content/2026-04-30 && echo \"---\" && git log --oneline -5",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/0e3ce94f-5ed2-4d39-874e-d8fc356b72f3.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "1822eb6d-8b86-4ffe-b2a8-8571aebbf61b",
-      "timestamp": "2026-05-01T04:05:01.151Z",
-      "command": "git checkout main && git checkout -b feature/add-state-audit && echo \"---\" && git status --short && echo \"---\" && git branch --show-current",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1822eb6d-8b86-4ffe-b2a8-8571aebbf61b.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "195eec1d-6749-4bc0-985c-d7d0a2c21de5",
-      "timestamp": "2026-04-28T20:55:22.609Z",
-      "command": "git checkout -b content/2026-04-29 && git stash pop",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/195eec1d-6749-4bc0-985c-d7d0a2c21de5.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
       "session_id": "20b603bb-85be-4952-9f70-e5f5e5f84204",
       "timestamp": "2026-05-05T09:58:35.363Z",
       "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\n\necho \"=== 1. switch main + 建 content/2026-05-05 ===\"\ngit switch main\ngit status --short\ngit checkout -b content/2026-05-05 main\ngit status --short\n\necho \"\"\necho \"=== 2. commit .gitignore on content/2026-05-05 ===\"\ngit add .gitignore\ngit commit -m \"$(cat <<'EOF'\ngitignore: add .claude/scheduled_tasks.lock (cron skill runtime state)\n\nCron skill (CronCreate/CronDelete) writes runtime state here; not meant for\ncommit. Mirrors the existing .claude/settings.local.json ignore pattern.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>\nEOF\n)\"\ngit log --oneline -3\n\necho \"\"\necho \"=== 3. 確認 dirty 已清乾淨 ===\"\ngit status --short",
@@ -71,37 +41,7 @@
       "has_explicit_base": false,
       "potential_violation": true,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/20b603bb-85be-4952-9f70-e5f5e5f84204.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "247f6191-ba3a-4494-9c0a-876b99725f84",
-      "timestamp": "2026-05-04T05:18:36.931Z",
-      "command": "git checkout main && git checkout -b project/qt-ai-enablement",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/247f6191-ba3a-4494-9c0a-876b99725f84.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "27273989-e1a1-49e6-8288-f3e637f6aa1e",
-      "timestamp": "2026-04-29T04:57:04.233Z",
-      "command": "cd /Users/dj_workstation/Documents/Projects/qtm-action-potential && git checkout -b feature/dev-workflow-commands && openspec new change dev-workflow-commands",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/27273989-e1a1-49e6-8288-f3e637f6aa1e.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "2940ff84-b7c8-495c-993c-c44be119b969",
-      "timestamp": "2026-05-01T19:45:50.556Z",
-      "command": "git checkout -b feature/add-system-state-coordination",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/2940ff84-b7c8-495c-993c-c44be119b969.jsonl",
-      "status": "manual_violation"
+      "status": "skip"
     },
     {
       "axiom_id": "a09",
@@ -115,42 +55,12 @@
     },
     {
       "axiom_id": "a09",
-      "session_id": "336a1ede-d7c0-4b70-9958-f724ac658c8c",
-      "timestamp": "2026-05-02T10:23:01.570Z",
-      "command": "git checkout -b feature/add-reports-publishing 2>&1",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/336a1ede-d7c0-4b70-9958-f724ac658c8c.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "336a1ede-d7c0-4b70-9958-f724ac658c8c",
-      "timestamp": "2026-05-02T10:27:06.620Z",
-      "command": "git branch -D feature/add-reports-publishing && git checkout -b feature/add-reports-publishing && git status",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/336a1ede-d7c0-4b70-9958-f724ac658c8c.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
       "session_id": "37afc943-2234-408d-9263-f9918fd7242d",
       "timestamp": "2026-05-08T03:30:57.684Z",
       "command": "git checkout main && git checkout -b feature/add-project-worktree-flow main",
       "has_explicit_base": true,
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/37afc943-2234-408d-9263-f9918fd7242d.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "396d9e6f-6483-4264-a10a-6d0df4a0d648",
-      "timestamp": "2026-04-28T20:57:43.967Z",
-      "command": "git checkout -b project/yoga-cs-agent main && git branch --show-current",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/396d9e6f-6483-4264-a10a-6d0df4a0d648.jsonl",
       "status": "manual_compliance"
     },
     {
@@ -162,26 +72,6 @@
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/3d51fd37-3859-4727-b594-1bdac3bb5843.jsonl",
       "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "409f999f-a95a-4f23-acfe-a3da247899b8",
-      "timestamp": "2026-05-01T02:00:04.644Z",
-      "command": "git checkout -b feature/add-threads-polish-skill main 2>&1 && echo \"---\" && git status --short && echo \"---\" && git branch --show-current",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/409f999f-a95a-4f23-acfe-a3da247899b8.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "409f999f-a95a-4f23-acfe-a3da247899b8",
-      "timestamp": "2026-05-01T02:07:57.501Z",
-      "command": "git checkout -b content/2026-05-01 && git add inbox/ideas.md && git commit -m \"ideas: add observer Date validation extension to work_logs/surveys\" && echo \"---\" && git log -1 --oneline && echo \"---\" && git branch --show-current",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/409f999f-a95a-4f23-acfe-a3da247899b8.jsonl",
-      "status": "manual_violation"
     },
     {
       "axiom_id": "a09",
@@ -212,16 +102,6 @@
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/4580de44-8110-4874-91c8-8f437ba0c43a.jsonl",
       "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "4b2817b6-66eb-42ec-b91d-ff6c0fae28ee",
-      "timestamp": "2026-04-26T01:59:06.816Z",
-      "command": "git checkout -b content/2026-04-26",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/4b2817b6-66eb-42ec-b91d-ff6c0fae28ee.jsonl",
-      "status": "manual_violation"
     },
     {
       "axiom_id": "a09",
@@ -305,132 +185,12 @@
     },
     {
       "axiom_id": "a09",
-      "session_id": "5437c7dc-a78d-4fd8-a0bf-5ee2d761bcc4",
-      "timestamp": "2026-04-26T08:05:36.450Z",
-      "command": "git checkout main && git checkout -b project/gcp-ace-cert",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/5437c7dc-a78d-4fd8-a0bf-5ee2d761bcc4.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "6804494e-9426-4b24-aa49-88ad4ca3df59",
-      "timestamp": "2026-04-28T02:30:51.866Z",
-      "command": "git checkout main && git checkout -b content/2026-04-28",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6804494e-9426-4b24-aa49-88ad4ca3df59.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "6c7d9604-2eb7-4687-892a-216bf1dadd17",
-      "timestamp": "2026-05-04T01:41:37.263Z",
-      "command": "git checkout main && git checkout -b content/2026-05-04 && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "6c7d9604-2eb7-4687-892a-216bf1dadd17",
-      "timestamp": "2026-05-04T01:41:45.621Z",
-      "command": "git stash push -u -m \"ctx-eod-route-to-today\" && git checkout main && git checkout -b content/2026-05-04 && git stash pop && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "6c7d9604-2eb7-4687-892a-216bf1dadd17",
-      "timestamp": "2026-05-04T01:44:48.633Z",
-      "command": "git branch -D content/2026-05-03 && git checkout -b content/2026-05-04 && git stash pop && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "6c7d9604-2eb7-4687-892a-216bf1dadd17",
-      "timestamp": "2026-05-04T09:29:15.333Z",
-      "command": "git checkout -b feature/add-conversation-capture && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6c7d9604-2eb7-4687-892a-216bf1dadd17.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "74522efc-bf53-4057-9daf-5241dc71c055",
-      "timestamp": "2026-04-21T11:56:19.413Z",
-      "command": "git checkout -b work/2026-04-21-wwpf-screening origin/work/2026-04-21-wwpf-screening",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/74522efc-bf53-4057-9daf-5241dc71c055.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "74522efc-bf53-4057-9daf-5241dc71c055",
-      "timestamp": "2026-04-21T11:57:26.077Z",
-      "command": "git stash && git checkout -b work/2026-04-21-wwpf-screening origin/work/2026-04-21-wwpf-screening",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/74522efc-bf53-4057-9daf-5241dc71c055.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "7d9243d3-c141-46b8-b8d0-ae49a1a71b6a",
-      "timestamp": "2026-05-01T08:36:27.911Z",
-      "command": "git checkout -b feature/fix-feature-branch-arch-routing && git status",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/7d9243d3-c141-46b8-b8d0-ae49a1a71b6a.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
       "session_id": "80c8fb96-03c0-4db9-969f-3ffb07fd023b",
       "timestamp": "2026-05-06T08:43:28.605Z",
       "command": "git checkout main 2>&1 | tail -3 && git checkout -b feature/heptabase-ingest-pipeline 2>&1 | tail -3 && git stash pop 2>&1 | tail -10 && echo \"---status---\" && git status --short",
       "has_explicit_base": true,
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/80c8fb96-03c0-4db9-969f-3ffb07fd023b.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "84023922-ed19-40c8-bbc2-a8c6a5e3444b",
-      "timestamp": "2026-05-04T17:36:16.044Z",
-      "command": "today=$(date +%Y-%m-%d)\necho \"today: $today\"\nif git rev-parse --verify content/$today >/dev/null 2>&1; then\n  echo \"content/$today exists, checking out\"\n  git checkout content/$today\nelse\n  echo \"content/$today does not exist, creating from main\"\n  git checkout -b content/$today main\nfi\necho \"---\"\ngit branch --show-current",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "84023922-ed19-40c8-bbc2-a8c6a5e3444b",
-      "timestamp": "2026-05-04T17:39:29.102Z",
-      "command": "git checkout main && git branch -D content/2026-05-05 && git checkout -b content/2026-05-05 main && echo \"---\" && echo \"new content/2026-05-05 head:\" && git rev-parse HEAD && echo \"main head:\" && git rev-parse main",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "84023922-ed19-40c8-bbc2-a8c6a5e3444b",
-      "timestamp": "2026-05-04T17:56:09.054Z",
-      "command": "git status --short && echo \"---\" && git checkout -b feature/fix-eod-step-ordering main && echo \"---\" && git status --short",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/84023922-ed19-40c8-bbc2-a8c6a5e3444b.jsonl",
       "status": "manual_compliance"
     },
     {
@@ -472,56 +232,6 @@
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/8bcffd6a-6113-4fb2-b4eb-2719d9819537.jsonl",
       "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "8f53653a-2ddd-4024-a515-711c232b65fb",
-      "timestamp": "2026-05-03T02:14:55.900Z",
-      "command": "git checkout -b content/2026-05-03 main && git status --short",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/8f53653a-2ddd-4024-a515-711c232b65fb.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "9677ec10-891b-4df7-b50d-5a07ef0524d8",
-      "timestamp": "2026-05-01T11:16:43.574Z",
-      "command": "current=$(git branch --show-current); today=$(date +%Y-%m-%d); echo \"current=$current today=$today\"; if [ \"$current\" != \"content/$today\" ]; then if git rev-parse --verify content/$today >/dev/null 2>&1; then git checkout content/$today; else git checkout -b content/$today main; fi; fi; git branch --show-current",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9677ec10-891b-4df7-b50d-5a07ef0524d8.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "9d0520b6-0641-4571-9272-4f74085cc65d",
-      "timestamp": "2026-04-28T06:36:35.051Z",
-      "command": "git checkout main && git branch -D feature/axioms-a05-t07-t10 && git checkout -b feature/axioms-a05-t07-t10 && git cherry-pick d87550d",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9d0520b6-0641-4571-9272-4f74085cc65d.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "a31b1914-ad6c-49e6-8762-7d29b89d44bd",
-      "timestamp": "2026-04-22T04:11:06.213Z",
-      "command": "git checkout -b content/2026-04-22 && git add contexts/survey_sessions/2026-04-22_ai-customer-service-vendors-survey.md contexts/survey_sessions/evolver-insight.html contexts/survey_sessions/evolver-insight.md && git commit -m \"docs: add AI 客服 vendors survey，移除 evolver-insight 重複稿\"",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/a31b1914-ad6c-49e6-8762-7d29b89d44bd.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "a4efdf52-c56f-4352-960e-5224e2de9eaa",
-      "timestamp": "2026-05-01T21:22:42.891Z",
-      "command": "git checkout -b feature/changelog-0.10-0.11",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/a4efdf52-c56f-4352-960e-5224e2de9eaa.jsonl",
-      "status": "manual_violation"
     },
     {
       "axiom_id": "a09",
@@ -582,36 +292,6 @@
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b6b7ca85-4b96-414c-9a3d-293f85c35e8b.jsonl",
       "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "b7df301e-9d33-45c8-9f5d-df36b6fc2b39",
-      "timestamp": "2026-04-23T20:41:26.552Z",
-      "command": "git checkout -b content/2026-04-24",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b7df301e-9d33-45c8-9f5d-df36b6fc2b39.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "b818b1c8-09e0-4c5b-a577-b00d0cb3f277",
-      "timestamp": "2026-04-29T20:01:13.695Z",
-      "command": "git checkout main && git branch --list \"project/agent-security-hacker\" && echo \"---\" && git checkout -b project/agent-security-hacker && git branch --show-current && echo \"---\" && mkdir -p projects/agent-security-hacker/context && ls projects/agent-security-hacker/",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b818b1c8-09e0-4c5b-a577-b00d0cb3f277.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "b818b1c8-09e0-4c5b-a577-b00d0cb3f277",
-      "timestamp": "2026-04-29T21:52:20.944Z",
-      "command": "git checkout main && git checkout -b feature/evomap-gene-capsule-alignment && echo \"---POPPING---\" && git stash pop stash@{0} && echo \"---STATUS---\" && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b818b1c8-09e0-4c5b-a577-b00d0cb3f277.jsonl",
-      "status": "manual_violation"
     },
     {
       "axiom_id": "a09",
@@ -686,26 +366,6 @@
     {
       "axiom_id": "a09",
       "session_id": "c5f9f6eb-e42a-4d28-ab00-0a880b88fb72",
-      "timestamp": "2026-05-04T19:07:45.959Z",
-      "command": "git checkout -b feature/guard-arch-feature-branch-from-main && git status",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c5f9f6eb-e42a-4d28-ab00-0a880b88fb72.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "c5f9f6eb-e42a-4d28-ab00-0a880b88fb72",
-      "timestamp": "2026-05-04T19:16:36.638Z",
-      "command": "git commit -m \"$(cat <<'EOF'\nfeat(ctx:arch): add Step 1.5 branch guard before opening feature/* branch\n\nGuard 在 /opsx:propose 完成、git checkout -b feature/<name> 之前介入：\n- HEAD detached / 在 feature/* → abort（前者引導 checkout main，後者引導收尾上一個 feature）\n- HEAD 在 main 但 behind origin/main → 自動 git pull --ff-only origin main\n- HEAD 在 project/<x> 或 content/<date> → 列出 ahead/behind 並詢問是否切 main\n純討論流程不會走到此步，guard 不觸發。\n\n新增 capability spec: ctx-arch-command（互斥檢查 / explore+propose 委派 /\nbranch guard 6 scenarios / Step 2 提示 / 不直接改 rules）。\n\nRefs: 2026-05-02 開 feature/add-reports-publishing 時 HEAD 在\nproject/yoga-cs-agent，feature 分支落後 main 並繼承 5 個非預期 commits。\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>\nEOF\n)\"",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c5f9f6eb-e42a-4d28-ab00-0a880b88fb72.jsonl",
-      "status": "skip"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "c5f9f6eb-e42a-4d28-ab00-0a880b88fb72",
       "timestamp": "2026-05-05T03:37:43.412Z",
       "command": "git checkout -b feature/fix-state-audit-read-from-main main && git status --short && git branch --show-current",
       "has_explicit_base": true,
@@ -732,16 +392,6 @@
       "potential_violation": true,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c5f9f6eb-e42a-4d28-ab00-0a880b88fb72.jsonl",
       "status": "skip"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "c7aae979-25df-4118-9ea7-d0aabaf7c679",
-      "timestamp": "2026-05-01T09:01:30.920Z",
-      "command": "git checkout -b feature/spec-migrate-1.2",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/c7aae979-25df-4118-9ea7-d0aabaf7c679.jsonl",
-      "status": "manual_violation"
     },
     {
       "axiom_id": "a09",
@@ -775,43 +425,13 @@
     },
     {
       "axiom_id": "a09",
-      "session_id": "e443446e-e9d4-4db6-9ffc-b269835f0632",
-      "timestamp": "2026-05-01T21:45:28.399Z",
-      "command": "git checkout main && git checkout -b project/ghost-blog-optimization && mkdir -p projects/ghost-blog-optimization/context",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "e443446e-e9d4-4db6-9ffc-b269835f0632",
-      "timestamp": "2026-05-01T22:12:19.218Z",
-      "command": "cd /Users/dj_workstation/Documents/Projects/ghost-blog-dev/ && git checkout -b feature/fix-ghost-collection-routes && git add frontend/src/app/page.tsx frontend/src/app/insights/page.tsx 'frontend/src/app/post/[slug]/page.tsx' 'frontend/src/app/[slug]/page.tsx' 'frontend/src/app/insights/[slug]/page.tsx' frontend/src/components/PostPage.tsx && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "e443446e-e9d4-4db6-9ffc-b269835f0632",
-      "timestamp": "2026-05-01T23:37:39.243Z",
-      "command": "git checkout main && git checkout -b content/2026-05-02 && git stash pop stash@{1} && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e443446e-e9d4-4db6-9ffc-b269835f0632.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
       "session_id": "e5907a06-9edd-46fd-9175-86786c6a573a",
       "timestamp": "2026-05-10T06:20:34.011Z",
       "command": "cd /Users/dj_workstation/Documents/Projects/qt-ap && git stash push -m \"WIP: gitignore log rules (QES-112 branch)\" -- .gitignore && echo \"---stash list---\" && git stash list && echo \"---fetch main---\" && git fetch origin main 2>&1 | tail -5 && echo \"---checkout main---\" && git checkout main && echo \"---branch from main---\" && git checkout -b docs/api-v3.1-update && git status -sb",
       "has_explicit_base": false,
       "potential_violation": true,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/e5907a06-9edd-46fd-9175-86786c6a573a.jsonl",
-      "status": "manual_violation"
+      "status": "manual_compliance"
     },
     {
       "axiom_id": "a09",
@@ -855,53 +475,13 @@
     },
     {
       "axiom_id": "a09",
-      "session_id": "eeca9fe4-003f-45a0-be77-d620f2949ac8",
-      "timestamp": "2026-04-24T04:00:56.354Z",
-      "command": "git checkout -b feature/docs-housekeeping-2026-04-24 && git add CHANGELOG.md rules/ARCHITECTURE.md rules/WORKSPACE.md rules/skills/INDEX.md .claude/skills/doc-formatter/SKILL.md rules/skills/doc-formatter/ rules/skills/zh-polish/ && echo \"---staged---\" && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/eeca9fe4-003f-45a0-be77-d620f2949ac8.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "eeca9fe4-003f-45a0-be77-d620f2949ac8",
-      "timestamp": "2026-04-24T04:02:54.753Z",
-      "command": "git checkout -b content/2026-04-24 && git add contexts/blog/2026-04-24_claude-code-postmortem-short.md contexts/blog/2026-04-24_claude-code-postmortem.md contexts/thought_review/2026-04-24_zh-polish-skill-eval.md contexts/work_logs/2026-04-24_exocortex-dev_daily-usage-reference.md && git commit -m \"content: 2026-04-24 drop — claude-code postmortem、zh-polish eval、daily usage ref\" && echo \"---return to main---\" && git checkout main && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/eeca9fe4-003f-45a0-be77-d620f2949ac8.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a",
-      "timestamp": "2026-05-01T11:54:18.672Z",
-      "command": "git checkout -b feature/extend-state-audit-remote-aware && git status --short && git branch --show-current",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a",
-      "timestamp": "2026-05-01T13:23:38.259Z",
-      "command": "git rev-parse --verify content/2026-05-01 2>/dev/null && git checkout content/2026-05-01 || git checkout -b content/2026-05-01 main; git branch --show-current",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
       "session_id": "f72b06b4-8dfc-4b34-b722-a4157e070662",
       "timestamp": "2026-05-14T07:38:02.886Z",
       "command": "git worktree remove /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/feature+cross-worktree-hooks-resolution 2>&1 && git branch -d feature/cross-worktree-hooks-resolution 2>&1 && echo '---worktree list---' && git worktree list 2>&1 && echo '---branches---' && git branch 2>&1 | grep -E \"^\\*|feature/cross-worktree\"",
       "has_explicit_base": false,
       "potential_violation": true,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f72b06b4-8dfc-4b34-b722-a4157e070662.jsonl",
-      "status": "manual_violation"
+      "status": "skip"
     },
     {
       "axiom_id": "a09",
@@ -951,26 +531,6 @@
       "has_explicit_base": true,
       "potential_violation": false,
       "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/facae6a3-97bd-4cb4-bad8-5c06c33a7216.jsonl",
-      "status": "manual_compliance"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "fb4187de-4478-4672-b1c7-ff49e717ba39",
-      "timestamp": "2026-04-23T20:26:08.152Z",
-      "command": "git checkout main && git checkout -b feature/add-project-branch-flow && git status --short",
-      "has_explicit_base": false,
-      "potential_violation": true,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/fb4187de-4478-4672-b1c7-ff49e717ba39.jsonl",
-      "status": "manual_violation"
-    },
-    {
-      "axiom_id": "a09",
-      "session_id": "fb4187de-4478-4672-b1c7-ff49e717ba39",
-      "timestamp": "2026-04-23T20:28:37.076Z",
-      "command": "git branch project/test-split main && git branch --list 'project/*' 'content/*' 'feature/*' && echo \"---status---\" && git status --short",
-      "has_explicit_base": true,
-      "potential_violation": false,
-      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/fb4187de-4478-4672-b1c7-ff49e717ba39.jsonl",
       "status": "manual_compliance"
     }
   ]
