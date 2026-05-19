@@ -2,103 +2,292 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<title>Axiom Evaluation Dashboard — 2026-05-19</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axiom a09 Evaluation — 2026-05-19</title>
 <style>
-  body { font-family: -apple-system, system-ui, sans-serif; max-width: 920px; margin: 2em auto; padding: 0 1em; line-height: 1.55; color: #222; }
-  h1, h2, h3 { font-weight: 600; }
-  h1 { border-bottom: 2px solid #ddd; padding-bottom: 0.3em; }
-  pre { background: #f6f8fa; padding: 1em; overflow-x: auto; border-radius: 6px; font-size: 13px; line-height: 1.4; }
-  .meta { color: #666; font-size: 0.9em; }
+  :root {
+    --bg: #fafaf9;
+    --fg: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card: #ffffff;
+    --green: #059669;
+    --green-bg: #d1fae5;
+    --yellow: #d97706;
+    --yellow-bg: #fef3c7;
+    --gray: #9ca3af;
+    --gray-bg: #f3f4f6;
+    --red: #dc2626;
+    --red-bg: #fee2e2;
+    --accent: #2563eb;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .container { max-width: 920px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  header.page { margin-bottom: 32px; }
+  header.page h1 { font-size: 28px; margin: 0 0 4px; font-weight: 700; }
+  header.page .sub { color: var(--muted); font-size: 14px; }
+  header.page .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; margin-left: 8px;
+  }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .badge.gray { background: var(--gray-bg); color: var(--gray); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 18px; margin: 0 0 16px; font-weight: 600; }
+  .card h3 { font-size: 14px; margin: 24px 0 8px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Stats grid */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .stat .value { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .stat .sub { font-size: 12px; color: var(--muted); }
+  .stat.green .value { color: var(--green); }
+  .stat.red .value { color: var(--red); }
+  .stat.gray .value { color: var(--gray); }
+  .stat.accent .value { color: var(--accent); }
+
+  /* Breakdown bar */
+  .breakdown-bar {
+    display: flex; height: 32px; border-radius: 8px; overflow: hidden;
+    margin: 8px 0 16px; border: 1px solid var(--border);
+  }
+  .breakdown-bar .seg {
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 12px; font-weight: 600;
+    min-width: 30px;
+  }
+  .seg.compliance { background: var(--green); }
+  .seg.two-step { background: #f59e0b; }
+  .seg.skip { background: var(--gray); }
+  .seg.violation { background: var(--red); }
+
+  .legend { display: flex; gap: 16px; font-size: 13px; flex-wrap: wrap; }
+  .legend .item { display: flex; align-items: center; gap: 6px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 2px; }
+
+  /* Timeline */
+  ul.timeline { list-style: none; padding: 0; margin: 0; }
+  ul.timeline li { display: flex; align-items: center; gap: 12px; font-size: 13px; padding: 4px 0; }
+  ul.timeline .date { font-family: SF Mono, Menlo, monospace; color: var(--muted); width: 90px; flex-shrink: 0; }
+  ul.timeline .bar { height: 8px; background: var(--green); border-radius: 4px; min-width: 4px; }
+  ul.timeline .num { color: var(--fg); font-weight: 600; width: 30px; text-align: right; }
+
+  /* Tables */
+  table.examples { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.examples td { padding: 8px 4px; border-top: 1px solid var(--border); vertical-align: top; }
+  table.examples td.ts { color: var(--muted); font-family: SF Mono, Menlo, monospace; width: 100px; }
+  table.examples td.cmd { font-family: SF Mono, Menlo, monospace; }
+  table.examples code { background: var(--gray-bg); padding: 2px 6px; border-radius: 4px; font-size: 12px; word-break: break-all; }
+
+  /* Two-step callout */
+  .callout {
+    background: var(--yellow-bg);
+    border-left: 4px solid var(--yellow);
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .callout strong { color: var(--yellow); }
+
+  /* Skip cards */
+  details.skip-card {
+    background: var(--gray-bg);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  details.skip-card summary { cursor: pointer; font-weight: 500; }
+  details.skip-card .why { color: var(--muted); margin: 8px 0 4px; }
+  details.skip-card ul.examples { padding-left: 16px; margin: 4px 0 0; }
+  details.skip-card code { font-family: SF Mono, Menlo, monospace; font-size: 11px; background: white; padding: 2px 6px; border-radius: 3px; word-break: break-all; }
+
+  /* Verdict box */
+  .verdict {
+    background: var(--green-bg);
+    border: 1px solid var(--green);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .verdict.yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+  .verdict h2 { margin: 0 0 8px; color: var(--green); font-size: 16px; }
+  .verdict.yellow h2 { color: var(--yellow); }
+  .verdict p { margin: 0; font-size: 14px; }
+
+  /* Caveats */
+  .caveat {
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 24px;
+  }
+
+  footer { color: var(--muted); font-size: 12px; margin-top: 32px; text-align: center; }
+  footer a { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat .value { font-size: 24px; }
+  }
 </style>
 </head>
 <body>
-<h1>Axiom Evaluation Dashboard</h1>
-<p class="meta">Scan date: 2026-05-19 · Axiom: a09 explicit-branch-base · First fixture round</p>
-<p class="meta">Source: <a href="https://github.com/Hangghost/exocortex-evaluation">exocortex-evaluation/axioms/a09_explicit_branch_base.md</a></p>
-<hr>
-<pre>---
-axiom_id: a09
-axiom_name: 開分支必須顯式 base
-axiom_path: rules/axioms/a09_explicit_branch_base.md
-promoted_at: null
-human_status: uncertain
-human_reviewed_at: null
-last_scanned_at: 2026-05-19
-total_scans: 1
----
+<div class="container">
 
-# 開分支必須顯式 base
+<header class="page">
+  <h1>Axiom a09 · 開分支必須顯式 base
+    <span class="badge green">human_status proposal: <strong>working</strong></span>
+  </h1>
+  <div class="sub">Scan 1 · 2026-05-19 · applies_from=2026-05-05 · 14 天 window</div>
+</header>
 
-## 觸發條件
+<div class="stats">
+  <div class="stat accent">
+    <div class="label">Total matches</div>
+    <div class="value">53</div>
+    <div class="sub">scanner candidates</div>
+  </div>
+  <div class="stat green">
+    <div class="label">Compliance</div>
+    <div class="value">89%</div>
+    <div class="sub">47 條 follow a09</div>
+  </div>
+  <div class="stat red">
+    <div class="label">Real violations</div>
+    <div class="value">0</div>
+    <div class="sub">人 review 後確認違反</div>
+  </div>
+  <div class="stat gray">
+    <div class="label">Scanner FP</div>
+    <div class="value">6</div>
+    <div class="sub">heredoc / multi-line 誤抓</div>
+  </div>
+</div>
 
-所有 `git checkout -b` / `git branch &lt;name&gt;` 命令
+<div class="card">
+  <h2>分類分佈</h2>
+  <div class="breakdown-bar">
+    <div class="seg compliance" style="flex: 46;" title="一行式 canonical">46</div>
+    <div class="seg two-step" style="flex: 1;" title="兩步式 effective safe">1</div>
+    <div class="seg skip" style="flex: 6;" title="Scanner false positive">6</div>
+  </div>
+  <div class="legend">
+    <div class="item"><span class="dot" style="background: var(--green)"></span> 一行式 <code>git checkout -b X main</code> · 46</div>
+    <div class="item"><span class="dot" style="background: #f59e0b"></span> 兩步式 (effective safe) · 1</div>
+    <div class="item"><span class="dot" style="background: var(--gray)"></span> Scanner false positive · 6</div>
+  </div>
+</div>
 
-## Scan History
+<div class="card">
+  <h2>觸發條件</h2>
+  <p>Scanner 抓所有 <code>git checkout -b</code> 與 <code>git branch &lt;name&gt;</code> 命令(從 Claude Code transcript JSONL 內 Bash tool_use payload),判斷是否含顯式 base argument。</p>
+  <p><strong>違反判定:</strong> <code>git checkout -b &lt;name&gt;</code> 沒有第二個 positional argument(即 base ref) → 標 <code>potential_violation</code>;Stage 2 人 review 決定真偽。</p>
+</div>
 
-### Scan 1 — 2026-05-19
+<div class="card">
+  <h2>每日觸發頻率(compliance only)</h2>
+  <ul class="timeline">
+    <li><span class="date">2026-05-05</span><span class="bar" style="width:16%"></span><span class="num">2</span></li><li><span class="date">2026-05-06</span><span class="bar" style="width:40%"></span><span class="num">5</span></li><li><span class="date">2026-05-07</span><span class="bar" style="width:8%"></span><span class="num">1</span></li><li><span class="date">2026-05-08</span><span class="bar" style="width:32%"></span><span class="num">4</span></li><li><span class="date">2026-05-09</span><span class="bar" style="width:40%"></span><span class="num">5</span></li><li><span class="date">2026-05-10</span><span class="bar" style="width:32%"></span><span class="num">4</span></li><li><span class="date">2026-05-11</span><span class="bar" style="width:24%"></span><span class="num">3</span></li><li><span class="date">2026-05-12</span><span class="bar" style="width:16%"></span><span class="num">2</span></li><li><span class="date">2026-05-13</span><span class="bar" style="width:88%"></span><span class="num">11</span></li><li><span class="date">2026-05-14</span><span class="bar" style="width:32%"></span><span class="num">4</span></li><li><span class="date">2026-05-15</span><span class="bar" style="width:24%"></span><span class="num">3</span></li><li><span class="date">2026-05-17</span><span class="bar" style="width:16%"></span><span class="num">2</span></li><li><span class="date">2026-05-18</span><span class="bar" style="width:8%"></span><span class="num">1</span></li>
+  </ul>
+</div>
 
-- **Window**: 30 天
-- **Total matches**: 97
-- **Has explicit base (符合 a09)**: 57 (58.8%)
-- **Reviewed counts**: {&#x27;manual_compliance&#x27;: 56, &#x27;manual_violation&#x27;: 36, &#x27;skip&#x27;: 5}
-- **Manual violations**: 36
-- **Violation sessions**:
-  - `0e3ce94f-5ed2-4d39-874e-d8fc356b72f3` @ 2026-04-29T17:18:44.034Z — `git checkout main &amp;&amp; git merge --squash content/2026-04-29 &amp;&amp; git commit -m &quot;content: 2026-04-29 daily snapshot&quot; &amp;&amp; git branch -D content/2026-04-29 &amp;&amp; git checkout -b content/2026-04-30 &amp;&amp; echo &quot;-…`
-  - `1822eb6d-8b86-4ffe-b2a8-8571aebbf61b` @ 2026-05-01T04:05:01.151Z — `git checkout main &amp;&amp; git checkout -b feature/add-state-audit &amp;&amp; echo &quot;---&quot; &amp;&amp; git status --short &amp;&amp; echo &quot;---&quot; &amp;&amp; git branch --show-current`
-  - `195eec1d-6749-4bc0-985c-d7d0a2c21de5` @ 2026-04-28T20:55:22.609Z — `git checkout -b content/2026-04-29 &amp;&amp; git stash pop`
-  - `20b603bb-85be-4952-9f70-e5f5e5f84204` @ 2026-05-05T10:02:49.754Z — `cd /Users/dj_workstation/Documents/Projects/Exocortex-personal ⏎  ⏎ echo &quot;=== 當前分支 ===&quot; ⏎ git branch --show-current ⏎  ⏎ echo &quot;&quot; ⏎ echo &quot;=== working tree 狀態 ===&quot; ⏎ git status --short ⏎  ⏎ echo &quot;&quot; ⏎…`
-  - `247f6191-ba3a-4494-9c0a-876b99725f84` @ 2026-05-04T05:18:36.931Z — `git checkout main &amp;&amp; git checkout -b project/qt-ai-enablement`
-  - `27273989-e1a1-49e6-8288-f3e637f6aa1e` @ 2026-04-29T04:57:04.233Z — `cd /Users/dj_workstation/Documents/Projects/qtm-action-potential &amp;&amp; git checkout -b feature/dev-workflow-commands &amp;&amp; openspec new change dev-workflow-commands`
-  - `2940ff84-b7c8-495c-993c-c44be119b969` @ 2026-05-01T19:45:50.556Z — `git checkout -b feature/add-system-state-coordination`
-  - `336a1ede-d7c0-4b70-9958-f724ac658c8c` @ 2026-05-02T10:27:06.620Z — `git branch -D feature/add-reports-publishing &amp;&amp; git checkout -b feature/add-reports-publishing &amp;&amp; git status`
-  - `409f999f-a95a-4f23-acfe-a3da247899b8` @ 2026-05-01T02:07:57.501Z — `git checkout -b content/2026-05-01 &amp;&amp; git add inbox/ideas.md &amp;&amp; git commit -m &quot;ideas: add observer Date validation extension to work_logs/surveys&quot; &amp;&amp; echo &quot;---&quot; &amp;&amp; git log -1 --oneline &amp;&amp; echo &quot;---…`
-  - `4b2817b6-66eb-42ec-b91d-ff6c0fae28ee` @ 2026-04-26T01:59:06.816Z — `git checkout -b content/2026-04-26`
-  - `5437c7dc-a78d-4fd8-a0bf-5ee2d761bcc4` @ 2026-04-26T08:05:36.450Z — `git checkout main &amp;&amp; git checkout -b project/gcp-ace-cert`
-  - `6804494e-9426-4b24-aa49-88ad4ca3df59` @ 2026-04-28T02:30:51.866Z — `git checkout main &amp;&amp; git checkout -b content/2026-04-28`
-  - `6c7d9604-2eb7-4687-892a-216bf1dadd17` @ 2026-05-04T01:41:37.263Z — `git checkout main &amp;&amp; git checkout -b content/2026-05-04 &amp;&amp; git status --short`
-  - `6c7d9604-2eb7-4687-892a-216bf1dadd17` @ 2026-05-04T01:41:45.621Z — `git stash push -u -m &quot;ctx-eod-route-to-today&quot; &amp;&amp; git checkout main &amp;&amp; git checkout -b content/2026-05-04 &amp;&amp; git stash pop &amp;&amp; git status --short`
-  - `6c7d9604-2eb7-4687-892a-216bf1dadd17` @ 2026-05-04T01:44:48.633Z — `git branch -D content/2026-05-03 &amp;&amp; git checkout -b content/2026-05-04 &amp;&amp; git stash pop &amp;&amp; git status --short`
-  - `6c7d9604-2eb7-4687-892a-216bf1dadd17` @ 2026-05-04T09:29:15.333Z — `git checkout -b feature/add-conversation-capture &amp;&amp; git status --short`
-  - `7d9243d3-c141-46b8-b8d0-ae49a1a71b6a` @ 2026-05-01T08:36:27.911Z — `git checkout -b feature/fix-feature-branch-arch-routing &amp;&amp; git status`
-  - `84023922-ed19-40c8-bbc2-a8c6a5e3444b` @ 2026-05-04T17:36:16.044Z — `today=$(date +%Y-%m-%d) ⏎ echo &quot;today: $today&quot; ⏎ if git rev-parse --verify content/$today &gt;/dev/null 2&gt;&amp;1; then ⏎   echo &quot;content/$today exists, checking out&quot; ⏎   git checkout content/$today ⏎ else…`
-  - `9677ec10-891b-4df7-b50d-5a07ef0524d8` @ 2026-05-01T11:16:43.574Z — `current=$(git branch --show-current); today=$(date +%Y-%m-%d); echo &quot;current=$current today=$today&quot;; if [ &quot;$current&quot; != &quot;content/$today&quot; ]; then if git rev-parse --verify content/$today &gt;/dev/null …`
-  - `9d0520b6-0641-4571-9272-4f74085cc65d` @ 2026-04-28T06:36:35.051Z — `git checkout main &amp;&amp; git branch -D feature/axioms-a05-t07-t10 &amp;&amp; git checkout -b feature/axioms-a05-t07-t10 &amp;&amp; git cherry-pick d87550d`
-  - `a31b1914-ad6c-49e6-8762-7d29b89d44bd` @ 2026-04-22T04:11:06.213Z — `git checkout -b content/2026-04-22 &amp;&amp; git add contexts/survey_sessions/2026-04-22_ai-customer-service-vendors-survey.md contexts/survey_sessions/evolver-insight.html contexts/survey_sessions/evolve…`
-  - `a4efdf52-c56f-4352-960e-5224e2de9eaa` @ 2026-05-01T21:22:42.891Z — `git checkout -b feature/changelog-0.10-0.11`
-  - `b7df301e-9d33-45c8-9f5d-df36b6fc2b39` @ 2026-04-23T20:41:26.552Z — `git checkout -b content/2026-04-24`
-  - `b818b1c8-09e0-4c5b-a577-b00d0cb3f277` @ 2026-04-29T20:01:13.695Z — `git checkout main &amp;&amp; git branch --list &quot;project/agent-security-hacker&quot; &amp;&amp; echo &quot;---&quot; &amp;&amp; git checkout -b project/agent-security-hacker &amp;&amp; git branch --show-current &amp;&amp; echo &quot;---&quot; &amp;&amp; mkdir -p projects…`
-  - `b818b1c8-09e0-4c5b-a577-b00d0cb3f277` @ 2026-04-29T21:52:20.944Z — `git checkout main &amp;&amp; git checkout -b feature/evomap-gene-capsule-alignment &amp;&amp; echo &quot;---POPPING---&quot; &amp;&amp; git stash pop stash@{0} &amp;&amp; echo &quot;---STATUS---&quot; &amp;&amp; git status --short`
-  - `c5f9f6eb-e42a-4d28-ab00-0a880b88fb72` @ 2026-05-04T19:07:45.959Z — `git checkout -b feature/guard-arch-feature-branch-from-main &amp;&amp; git status`
-  - `c7aae979-25df-4118-9ea7-d0aabaf7c679` @ 2026-05-01T09:01:30.920Z — `git checkout -b feature/spec-migrate-1.2`
-  - `e443446e-e9d4-4db6-9ffc-b269835f0632` @ 2026-05-01T21:45:28.399Z — `git checkout main &amp;&amp; git checkout -b project/ghost-blog-optimization &amp;&amp; mkdir -p projects/ghost-blog-optimization/context`
-  - `e443446e-e9d4-4db6-9ffc-b269835f0632` @ 2026-05-01T22:12:19.218Z — `cd /Users/dj_workstation/Documents/Projects/ghost-blog-dev/ &amp;&amp; git checkout -b feature/fix-ghost-collection-routes &amp;&amp; git add frontend/src/app/page.tsx frontend/src/app/insights/page.tsx &#x27;frontend/…`
-  - `e443446e-e9d4-4db6-9ffc-b269835f0632` @ 2026-05-01T23:37:39.243Z — `git checkout main &amp;&amp; git checkout -b content/2026-05-02 &amp;&amp; git stash pop stash@{1} &amp;&amp; git status --short`
-  - `e5907a06-9edd-46fd-9175-86786c6a573a` @ 2026-05-10T06:20:34.011Z — `cd /Users/dj_workstation/Documents/Projects/qt-ap &amp;&amp; git stash push -m &quot;WIP: gitignore log rules (QES-112 branch)&quot; -- .gitignore &amp;&amp; echo &quot;---stash list---&quot; &amp;&amp; git stash list &amp;&amp; echo &quot;---fetch main-…`
-  - `eeca9fe4-003f-45a0-be77-d620f2949ac8` @ 2026-04-24T04:00:56.354Z — `git checkout -b feature/docs-housekeeping-2026-04-24 &amp;&amp; git add CHANGELOG.md rules/ARCHITECTURE.md rules/WORKSPACE.md rules/skills/INDEX.md .claude/skills/doc-formatter/SKILL.md rules/skills/doc-fo…`
-  - `eeca9fe4-003f-45a0-be77-d620f2949ac8` @ 2026-04-24T04:02:54.753Z — `git checkout -b content/2026-04-24 &amp;&amp; git add contexts/blog/2026-04-24_claude-code-postmortem-short.md contexts/blog/2026-04-24_claude-code-postmortem.md contexts/thought_review/2026-04-24_zh-polis…`
-  - `f0bf44b8-f7f3-4e11-a0d8-a246bfa13e7a` @ 2026-05-01T11:54:18.672Z — `git checkout -b feature/extend-state-audit-remote-aware &amp;&amp; git status --short &amp;&amp; git branch --show-current`
-  - `f72b06b4-8dfc-4b34-b722-a4157e070662` @ 2026-05-14T07:38:02.886Z — `git worktree remove /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/feature+cross-worktree-hooks-resolution 2&gt;&amp;1 &amp;&amp; git branch -d feature/cross-worktree-hooks-resoluti…`
-  - `fb4187de-4478-4672-b1c7-ff49e717ba39` @ 2026-04-23T20:26:08.152Z — `git checkout main &amp;&amp; git checkout -b feature/add-project-branch-flow &amp;&amp; git status --short`
+<div class="card">
+  <h2>一行式 compliance 範例</h2>
+  <p style="color: var(--muted); font-size: 13px;">canonical idiom <code>git checkout -b &lt;name&gt; main</code>,共 46 條。前 5 個範例:</p>
+  <table class="examples">
+    <tr><td class="ts">2026-05-17</td><td class="cmd"><code>git checkout -b content/2026-05-18 main &amp;&amp; git add -A &amp;&amp; git status --short | head -25</code></td></tr><tr><td class="ts">2026-05-17</td><td class="cmd"><code>git checkout -b content/2026-05-18 main &amp;&amp; git add -A &amp;&amp; git commit -m &quot;content: 2026-05-18 stale-bridge trilogy补建 + routing-guard edge case aggregation&quot; &amp;&amp; ec…</code></td></tr><tr><td class="ts">2026-05-12</td><td class="cmd"><code>git checkout -b content/2026-05-13 main &amp;&amp; git add infra/state/system_state.json memory/OBSERVATIONS.md inbox/captured/heptabase/article/2026-05-12.md inbox/ca…</code></td></tr><tr><td class="ts">2026-05-08</td><td class="cmd"><code>git checkout main &amp;&amp; git checkout -b feature/add-project-worktree-flow main</code></td></tr><tr><td class="ts">2026-05-07</td><td class="cmd"><code>git checkout -b feature/add-project-update-milestone-hint main &amp;&amp; git rev-parse --abbrev-ref HEAD &amp;&amp; git status --short</code></td></tr>
+  </table>
+</div>
 
-## Human Notes
+<div class="card">
+  <h2>兩步式 compliance(yellow zone)</h2>
+  <p style="color: var(--muted); font-size: 13px;">共 1 條。a09 doc 註明兩步式為 🟡 effective safe but idiom 不一致;歸入 compliance。</p>
+  <div class="callout">
+    <strong>注意:</strong> 兩步式 <code>git checkout main &amp;&amp; git checkout -b X</code> 在中間 checkout main 失敗(dirty wt)時會卡。建議統一收斂到一行式 <code>git checkout -b X main</code>。
+  </div>
+  <table class="examples">
+    <tr><td class="ts">2026-05-10</td><td class="cmd"><code>cd /Users/dj_workstation/Documents/Projects/qt-ap &amp;&amp; git stash push -m &quot;WIP: gitignore log rules (QES-112 branch)&quot; -- .gitignore &amp;&amp; echo &quot;---stash list---&quot; &amp;&amp; git stash list &amp;&amp; echo &quot;---fetch main---…</code></td></tr>
+  </table>
+</div>
 
-**Scan 1 (2026-05-19) — AI-prefilled fixture round**
+<div class="card">
+  <h2>Scanner false positives (6 條)</h2>
+  <p style="color: var(--muted); font-size: 13px;">這些不是 axiom 違反,是 Stage 1 regex scanner 在 Bash command 字串內誤抓到「看起來像 branch creation」的 token。已在 Stage 2 prefill 標 <code>skip</code>。</p>
+  
+<details class="skip-card">
+  <summary><strong>other</strong> · 1 條</summary>
+  <p class="why"></p>
+  <ul class="examples"><li><code>cd /Users/dj_workstation/Documents/Projects/Exocortex-personal ⏎  ⏎ echo &quot;=== 1. switch main + 建 content/2026-05-05 ===&quot; ⏎ git switch main ⏎ git status --short ⏎ git checkout -b content/2026-05-05 ma…</code></li></ul>
+</details>
 
-首輪 fixture 在 `/opsx:apply add-axiom-evaluation-pipeline` apply 階段由 AI 代填 Stage 2 checkbox(per Joey 要求 work-without-stopping),規則:
+<details class="skip-card">
+  <summary><strong>Multiline script</strong> · 1 條</summary>
+  <p class="why">多行 Bash script,scanner 在 `git branch\n\necho` 處把 `echo` 當下一個 token</p>
+  <ul class="examples"><li><code>cd /Users/dj_workstation/Documents/Projects/Exocortex-personal ⏎  ⏎ echo &quot;=== 當前分支 ===&quot; ⏎ git branch --show-current ⏎  ⏎ echo &quot;&quot; ⏎ echo &quot;=== working tree 狀態 ===&quot; ⏎ git status --short ⏎  ⏎ echo &quot;&quot; ⏎ e…</code></li></ul>
+</details>
 
-- `has_explicit_base: true` → `manual_compliance`
-- `has_explicit_base: false` → `manual_violation`
-- 命令含 heredoc / `cat &gt;` write / `git commit -m &quot;$(cat ...)&quot;` → `skip`(scanner 抓到 commit message body 內描述用的範例命令,非實際執行)
+<details class="skip-card">
+  <summary><strong>Commit message heredoc</strong> · 1 條</summary>
+  <p class="why">`git commit -m "$(cat &lt;&lt;'EOF' ..."` 把 commit 訊息中描述 axiom 的範例命令誤抓</p>
+  <ul class="examples"><li><code>git commit -m &quot;$(cat &lt;&lt;&#x27;EOF&#x27; ⏎ feat(branch-flow): enforce explicit branch base via axiom a09 + ctx command sweep ⏎  ⏎ 新增 axiom `rules/axioms/a09_explicit_branch_base.md`：「開分支 SHALL 使用 ⏎ 一行式 git check…</code></li></ul>
+</details>
 
-**Joey 需 review 的事項:**
+<details class="skip-card">
+  <summary><strong>Heredoc 寫文件</strong> · 2 條</summary>
+  <p class="why">Scanner 抓到 `cat &gt; X.md &lt;&lt;'EOF'` heredoc body 內的範例命令字串</p>
+  <ul class="examples"><li><code>cat &gt; /Users/dj_workstation/Documents/Projects/Exocortex/rules/WORKSPACE.md &lt;&lt;&#x27;EOF&#x27; ⏎ # WORKSPACE.md - 目錄路由速查 ⏎  ⏎ 目標：讓 AI 每輪 session 都能快速知道&quot;去哪裡找/放什麼&quot;。**找任何檔案前先查這裡。** ⏎  ⏎ &gt; **設計新功能或進行架構變更前**，先讀 `rul…</code></li><li><code>cat &gt; /Users/dj_workstation/Documents/Projects/Exocortex/rules/ARCHITECTURE.md &lt;&lt;&#x27;EOF&#x27; ⏎ # ARCHITECTURE.md - 系統架構地圖 ⏎  ⏎ 記錄各區塊的設計意圖、邊界、關係與資料流。**查閱時機**：設計新功能、架構變更前，或需要了解「為什麼這樣設計」時。 ⏎  ⏎ --- ⏎  ⏎ ## 頂層…</code></li></ul>
+</details>
 
-1. 36 條 `manual_violation` 多數是 a09 promote 前(2026-04-22 ~ 2026-05-08 zone)的歷史記錄,非 axiom 違反——applies-from 日期應該設定後才開始計入。Decision needed:這條 axiom 從哪一天起算?
-2. `Has explicit base 58.8%` 是 30 天 mixed window 的綜合比例,a09 promote 後的比例應該更高。如要 prove rule works 需切兩段比較。
-3. 觀測 5 條 `skip` 全是 false positive(scanner 抓到 commit message / heredoc body 內的命令字串)。Scan 1 的 scanner 精準度:violation 與 compliance 認定正確,但 source 噪音需後續 prompt / regex 改進。
-4. **Self-fulfilling bias 仍存在**:rule 注入後 agent(包括跑此 fixture 的 Claude)會主動套用 a09,grep 結果偏向 compliance。Repo 隔絕僅解決「結論不形成新 feedback loop」,不消除「行為被 rule 改變」。
+<details class="skip-card">
+  <summary><strong>Worktree remove + branch list</strong> · 1 條</summary>
+  <p class="why">`git worktree remove ... &amp;&amp; git branch -d ... &amp;&amp; git branch 2&gt;&amp;1 | grep` 後段的 `git branch 2` 被 regex 把 `2` 當 branch name</p>
+  <ul class="examples"><li><code>git worktree remove /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/feature+cross-worktree-hooks-resolution 2&gt;&amp;1 &amp;&amp; git branch -d feature/cross-worktree-hooks-resolution…</code></li></ul>
+</details>
 
-**human_status**:暫留 `uncertain`,待 Joey decision 後填寫(working / partial / obsolete)。
+  <p style="color: var(--muted); font-size: 13px; margin-top: 16px;"><strong>Scanner 改進方向:</strong> 推廣到 a07 / t10 前,可考慮把 scanner 改成「先 split 出獨立命令(分號 / <code>&amp;&amp;</code> / <code>||</code> / 換行 split),再對各 segment 跑 regex」,從根本上避免跨命令 match。</p>
+</div>
 
-</pre>
+<div class="verdict green">
+  <h2>Human_status proposal</h2>
+  <p>首輪 fixture 顯示 axiom 自 promote 後 0 真實違反、47 條 follow,**建議 promote 自 `uncertain` → `working`**。</p>
+</div>
+
+<div class="caveat">
+  <strong>Self-fulfilling bias caveat:</strong> 此 dashboard 顯示 a09 在 promote 後高 follow rate,但 repo 隔絕只解決「evaluation 結論不形成新 feedback loop」,**不消除**「agent 行為被 rule 注入改變」這個事實。47 條 follow 包含 evaluation pipeline 開發期間 Claude(本 session)主動套用 a09 的紀錄。要 prove "rule works",需 long-term 切多 window 比較或跨 repo external corpus,本 fixture round 不處理。
+</div>
+
+<footer>
+  Generated 2026-05-19 by <code>tools/llm_judge.py</code> in <a href="https://github.com/Hangghost/Exocortex-evaluation">Hangghost/Exocortex-evaluation</a> ·
+  Spec: <code>openspec/specs/axiom-evaluation-pipeline/spec.md</code> in Exocortex-personal
+</footer>
+
+</div>
 </body>
 </html>
