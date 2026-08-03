@@ -1,0 +1,281 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-05-31",
+  "window_days": 7,
+  "applies_from": "2026-05-05",
+  "effective_cutoff": "2026-05-24T13:00:02.445486+00:00",
+  "transcript_dir": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal",
+  "total_candidates": 30,
+  "candidates": [
+    {
+      "axiom_id": "a09",
+      "session_id": "00d134e5-8fb8-465f-929f-b26b6862d925",
+      "timestamp": "2026-05-25T02:58:00.678Z",
+      "command": "git checkout -b content/2026-05-25 main 2>&1 | tail -5 && echo \"---STATUS---\" && git status --short && echo \"---COMMIT---\" && git commit -m \"logs: add qheart-ap 2026-05-25 update — QES-124 recap + Jira backfill\" 2>&1 | tail -10",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/00d134e5-8fb8-465f-929f-b26b6862d925.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "019ff1a7-3f24-4429-8fb1-58a7f9b39a23",
+      "timestamp": "2026-05-26T09:59:18.074Z",
+      "command": "git checkout -b content/2026-05-26 main && git add inbox/digest_escalations.md projects/INDEX.md contexts/escalation_reviews/2026-05-26.html contexts/work_logs/2026-05-25_27001-support_update.md contexts/work_logs/2026-05-25_27001-support_update_2.md contexts/work_logs/2026-05-26_27001-support_update.md contexts/work_logs/2026-05-26_freelance-job-hunt-2026q2_update_2.md contexts/work_logs/2026-05-26_max5x-dispatch-architecture_update_3.md contexts/work_logs/2026-05-26_qheart-ap_mr5-planning-scope-revision.md contexts/work_logs/2026-05-26_qheart-ap_update.md && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/019ff1a7-3f24-4429-8fb1-58a7f9b39a23.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "1e045520-605c-456e-b01e-74a2219cf847",
+      "timestamp": "2026-05-27T09:44:15.877Z",
+      "command": "git checkout -b content/2026-05-27 main && git add contexts/work_logs/2026-05-27_feature-MR5_integration-foundation-code-review.md inbox/todos.md infra/state/system_state.json && git commit -m \"content: qt-ap MR5 integration-foundation code review + 5/27 todos\n\n- Add qt-ap MR5 (QES-125) code review work log (gemini-cli review of feature/MR5_integration-foundation)\n- Capture 2 new todos from 5/27 validation session:\n  * split-worklist-bucket-vs-consumer: mark_consumed API needs separate bucket + consumed_by params\n  * fix-resume-cd-persistence: /ctx:project resume Step 6 cd 沒持久化現象與根因假說\n- system_state.json refresh\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1e045520-605c-456e-b01e-74a2219cf847.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "1e045520-605c-456e-b01e-74a2219cf847",
+      "timestamp": "2026-05-27T09:49:50.830Z",
+      "command": "today=$(date +%Y-%m-%d) && current=$(git branch --show-current) && echo \"current=$current, today=$today\" && if [ \"$current\" != \"content/$today\" ]; then if git rev-parse --verify content/$today >/dev/null 2>&1; then git checkout content/$today; else git checkout -b content/$today main; fi; fi && git branch --show-current",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1e045520-605c-456e-b01e-74a2219cf847.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "1e045520-605c-456e-b01e-74a2219cf847",
+      "timestamp": "2026-05-27T10:02:21.125Z",
+      "command": "git branch --show-current\necho \"---\"\necho \"===== #2 dry-run: simulate rebase via temp branch =====\"\ngit checkout -b _dryrun_rebase_truth feature/add-truth-of-day-helper 2>&1 | tail -3\necho \"-- attempting rebase onto main...\"\ngit rebase main 2>&1 | tail -10\necho \"-- exit: $?\"\necho \"-- post-rebase branch state:\"\ngit log --oneline main.._dryrun_rebase_truth 2>&1\necho \"-- cleanup: switch off and delete temp\"\ngit checkout content/2026-05-27 2>&1 | tail -2\ngit branch -D _dryrun_rebase_truth 2>&1",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1e045520-605c-456e-b01e-74a2219cf847.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "1e045520-605c-456e-b01e-74a2219cf847",
+      "timestamp": "2026-05-27T10:02:42.380Z",
+      "command": "git stash push -u -m \"tasker-cron-output-post-eod\" \\\n  infra/periodic_jobs/tasker/.cron.log \\\n  infra/periodic_jobs/tasker/cases/INDEX.md \\\n  infra/periodic_jobs/tasker/cases/TK26052415IVYS19.json \\\n  infra/periodic_jobs/tasker/cases/TK26052622CAOB47.json \\\n  infra/periodic_jobs/tasker/cases/TK26052716DVXT81.json 2>&1 | tail -3\necho \"---\"\ngit status --short\necho \"---\"\necho \"===== #2 dry-run retry =====\"\ngit checkout -b _dryrun_rebase_truth feature/add-truth-of-day-helper 2>&1 | tail -2\ngit rebase main 2>&1 | tail -15\necho \"-- exit: $?\"\necho \"-- post-rebase branch state vs main:\"\ngit log --oneline main.._dryrun_rebase_truth\necho \"-- cleanup\"\ngit checkout content/2026-05-27 2>&1 | tail -2\ngit branch -D _dryrun_rebase_truth 2>&1\ngit stash pop 2>&1 | tail -5",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/1e045520-605c-456e-b01e-74a2219cf847.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "247791c9-a843-4254-b120-a80314ce4b2b",
+      "timestamp": "2026-05-26T21:22:23.479Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/yoga-cs-agent\necho \"===== Step 1: stash content-shape (work_log) for cross-branch handoff =====\"\ngit stash push -m \"ctx-content-split-worklog\" -- contexts/work_logs/2026-05-27_yoga-cs-agent_update.md\necho \"===== Step 2: commit project-shape on current branch =====\"\ngit add projects/yoga-cs-agent/PROJECT.md infra/adhoc_jobs/yoga_cs_agent/runtime/README.md\ngit commit -m \"$(cat <<'EOF'\nproject(yoga-cs-agent): 2026-05-27 update — task 12 a/b ✅ + tmux/tailscale-serve deploy doc + 13 promoted as next\n\nTask 12 子任務 a/b 結案、c 暫緩、13 promoted：\n\n- 12a smoke test PASS（submit/granularity/JSONL persist/advance + /regen→ollama→runtime_logs 全跑通；修了 5/24 ship 兩個 latent bug：review_ui AskActionMessage callback + py3.14 chainlit FileResponse，commits 09d51c1 + 8f134b6）\n- 12b Tailscale deploy PASS（boss URL http://dj-workstationmac-mini.tail2efb59.ts.net:8080/，繞 macOS Tahoe Local Network silent drop，tmux 持久化沿用 tasker-ui pattern）\n- 12c 暫緩 post-task 13（boss-onboard 可隨時啟動；task 13 mutable score lift 是 Phase 1 本質瓶頸，先做）\n- 13 promoted as next active\n\nREADME.md 同步更新 Mac mini 部署 SOP（tmux + Tailscale Serve，明示 --host 0.0.0.0 不可用）。\nEOF\n)\" && git log -1 --oneline\necho \"===== Step 3: switch to main + create content/2026-05-27 branch =====\"\ngit checkout main 2>&1 | tail -3\ngit checkout -b content/2026-05-27 2>&1 | head -3 || git checkout content/2026-05-27 2>&1 | head -3\necho \"===== Step 4: pop stash + commit work_log =====\"\ngit stash pop 2>&1 | tail -3\ngit add contexts/work_logs/2026-05-27_yoga-cs-agent_update.md\ngit commit -m \"$(cat <<'EOF'\nlogs: 2026-05-27 yoga update — 12a smoke + 12b deploy + tmux 持久化 doc\n\nwork_log capturing:\n- 12a smoke test PASS（latent bug 兩件修完）\n- 12b Tailscale deploy PASS（macOS Tahoe + Tailscale Serve workaround）\n- Logger optimization（system content elision 98.6% 省）\n- 經驗：latent UI bug pattern（boot 200 ≠ end-to-end）+ macOS Tahoe/Tailscale 環境議題群\n- 下一步：12c 暫緩，先做 task 13 tool use\nEOF\n)\" && git log -1 --oneline\necho \"===== Step 5: switch back to origin branch =====\"\ngit checkout project/yoga-cs-agent 2>&1 | tail -3\necho \"===== Final state =====\"\ngit status --short\ngit log --oneline -3 project/yoga-cs-agent\necho \"---content branch---\"\ngit log --oneline -3 content/2026-05-27",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/247791c9-a843-4254-b120-a80314ce4b2b.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "3e487191-cbff-4487-b2c5-d5b19d9b7b74",
+      "timestamp": "2026-05-31T03:02:05.941Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/exocortex-dev\necho \"=== 切 content/2026-05-31 (from main) ===\"\ngit checkout -b content/2026-05-31 main 2>&1 | tail -2\necho \"branch: $(git branch --show-current) | untracked 檔還在?\"\nls contexts/work_logs/2026-05-31_exocortex-dev_update.md contexts/cockpit/2026-05-30.html 2>&1\necho \"=== commit content 兩檔 ===\"\ngit add contexts/work_logs/2026-05-31_exocortex-dev_update.md contexts/cockpit/2026-05-30.html\ngit commit -q -m \"content: 2026-05-31 — exocortex-dev observability fix work_log + cockpit 05-30 dashboard\n\nlogs: add work log for exocortex-dev observability pipeline 連鎖修復（0.42.0–0.42.3）\n+ cockpit E1 05-30 dashboard 產出。\"\necho \"✓ content commit: $(git rev-parse --short HEAD)\"\necho \"=== 切回 project/exocortex-dev (origin) ===\"\ngit checkout project/exocortex-dev 2>&1 | tail -1\necho \"branch now: $(git branch --show-current)\"\necho \"工作樹（cockpit/work_log 應已 commit 到 content branch、不在此）:\"\ngit status --short | grep -vE \"contexts/cockpit$\" || echo \"(clean)\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/3e487191-cbff-4487-b2c5-d5b19d9b7b74.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "65deec7e-ea12-41f9-98e0-808ebce6055d",
+      "timestamp": "2026-05-27T02:12:35.447Z",
+      "command": "echo \"=== Step C: create feature branch from main ===\"\ngit checkout -b feature/add-truth-of-day-helper main\necho \"\"\necho \"=== Step D: apply stash (artifacts dir) ===\"\ngit stash list\ngit stash apply stash@{0}\necho \"\"\necho \"=== status after apply ===\"\ngit status --short\necho \"\"\necho \"=== verify artifacts present ===\"\nls openspec/changes/add-truth-of-day-helper/\nls openspec/changes/add-truth-of-day-helper/specs/observation-ssot-alignment/",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/65deec7e-ea12-41f9-98e0-808ebce6055d.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "6d5c1336-a64a-45aa-b63e-8edcb5d25058",
+      "timestamp": "2026-05-28T11:16:14.403Z",
+      "command": "today=$(date +%Y-%m-%d)\ncurrent=$(git branch --show-current)\necho \"current=$current today=$today\"\nif [ \"$current\" != \"content/$today\" ]; then\n  if git rev-parse --verify content/$today >/dev/null 2>&1; then\n    git checkout content/$today\n  else\n    git checkout -b content/$today main\n  fi\nfi\necho \"now on: $(git branch --show-current)\"",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/6d5c1336-a64a-45aa-b63e-8edcb5d25058.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "74a2994c-3e2d-4005-94d4-f05aae4145aa",
+      "timestamp": "2026-05-26T03:19:42.205Z",
+      "command": "git checkout -b feature/add-profile-revamp-skill main && git branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/74a2994c-3e2d-4005-94d4-f05aae4145aa.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "83106f96-46a0-4a70-a300-469dd46a9234",
+      "timestamp": "2026-05-31T11:57:01.482Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\ngit checkout -b content/2026-05-31 main\necho \"---staging content-shaped files---\"\ngit add contexts/escalation_reviews/2026-05-31.html \\\n        inbox/digest_escalations.md \\\n        inbox/captured/2026-05-31_state_audit.md \\\n        infra/state/system_state.json \\\n        infra/periodic_jobs/tasker/.cron.log\ngit status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/83106f96-46a0-4a70-a300-469dd46a9234.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "83106f96-46a0-4a70-a300-469dd46a9234",
+      "timestamp": "2026-05-31T12:05:06.824Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\ngit checkout -b content/2026-05-31 main\ngit add infra/state/system_state.json memory/OBSERVATIONS.md\ngit commit -m \"content: 2026-05-31 observer 收尾（OBSERVATIONS + state 快照）\" \\\n  -m \"Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\" -q\necho \"content commit: $(git rev-parse --short HEAD)\"\ngit checkout main\ngit merge --squash content/2026-05-31\ngit commit -m \"content: 2026-05-31 observer 收尾 daily snapshot\" \\\n  -m \"Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\" -q\necho \"merge commit: $(git rev-parse --short HEAD)\"\ngit branch -D content/2026-05-31\necho \"--- tree clean? ---\"\ngit status --short\necho \"(clean if empty above)\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/83106f96-46a0-4a70-a300-469dd46a9234.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9521a81f-d833-4f22-ab4d-ae86d0a5ba83",
+      "timestamp": "2026-05-26T11:21:39.173Z",
+      "command": "git checkout -b content/2026-05-26 main 2>&1 | tail -3\necho \"---\"\ngit status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9521a81f-d833-4f22-ab4d-ae86d0a5ba83.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "98faf66f-ed18-4212-984b-4996a3d4fd93",
+      "timestamp": "2026-05-30T00:14:15.954Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\ngit checkout -b content/2026-05-30 2>&1 | tail -1\ngit add inbox/captured/heptabase/skill_tools/2026-05-28.md inbox/digest_escalations.md\ngit commit -m \"content: re-file @holdenchu threads entry from skill_tools → escalate\n\n誤分類進 skill_tools 的 threads 條目（內容是講工具用法的文章，非工具本身）歸回 escalate。\ncurate-tools-for-blog 的 github-only guard 本就會 skip 此類條目。待 escalation review 聚類後評估「文章」sister。\" 2>&1 | tail -2\necho \"=== 切回 main ===\"; git checkout main 2>&1 | tail -1\necho \"=== content 分支 commit ===\"; git log --oneline -1 content/2026-05-30\necho \"=== main 上 inbox 檔狀態 (應回到含 @holdenchu 的版本，因 content 還沒 squash) ===\"; git status --short | grep inbox || echo \"(main working tree 乾淨，re-file 在 content/2026-05-30 上)\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/98faf66f-ed18-4212-984b-4996a3d4fd93.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9d188240-5a0c-402a-b0e8-4e8ad6db3f15",
+      "timestamp": "2026-05-28T07:22:57.602Z",
+      "command": "git branch -m feature/add-truth-of-day-helper feature/add-truth-of-day-helper-old && git checkout main && git checkout -b feature/add-truth-of-day-helper && git cherry-pick 350ab741",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9d188240-5a0c-402a-b0e8-4e8ad6db3f15.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9d2ae017-3e76-4ad4-9bb6-c383cde560ce",
+      "timestamp": "2026-05-26T23:07:53.911Z",
+      "command": "git checkout -b content/2026-05-27 main && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9d2ae017-3e76-4ad4-9bb6-c383cde560ce.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9e502511-3fbf-4e0f-b38c-92092c831687",
+      "timestamp": "2026-05-29T01:05:57.190Z",
+      "command": "cd \"$CLAUDE_PROJECT_DIR\" && git checkout -b content/2026-05-29 main && git add inbox/todos.md infra/periodic_jobs/tasker/.cron.log infra/periodic_jobs/tasker/cases/INDEX.md infra/periodic_jobs/tasker/cases/TK26052519HSGC34.json && git commit -m \"content: 2026-05-29 todos Wave 0 cleanup + tasker case residue\n\n- inbox/todos.md: mark split-worklist-bucket-vs-consumer [x] (shipped, evidence aa54b15);\n  move superseded /ctx:insights wrapper to Done 2026-05-29 cleanup batch\n- tasker: cron-generated case residue (TK26052519HSGC34 + INDEX regen + .cron.log)\" && echo \"=== done ===\" && git log --oneline -1",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9e502511-3fbf-4e0f-b38c-92092c831687.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9f90e6a9-c534-4bbe-8c33-28b7ec8cb0f4",
+      "timestamp": "2026-05-29T01:11:45.172Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/gate-workflow-tool\ngit add .claude/hooks/gate_workflow.py .claude/settings.json\ngit commit -q -m \"feat(hooks): gate Workflow tool behind PreToolUse ask confirmation\n\nPreToolUse hook (matcher: Workflow) emits permissionDecision=ask so dynamic\nworkflows require explicit opt-in each launch instead of auto-triggering\n(e.g. from the 'workflow' keyword). Verified via isolated claude -p test:\nhook fires on tool_name=Workflow, surfaces confirmation, blocks until answered.\nNon-Workflow tools pass through untouched.\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>\" 2>&1 | tail -3\necho \"=== create feature/ sibling ref at this commit ===\" \ngit branch feature/gate-workflow-tool\necho \"=== feature branch points at hook commit? ===\" \ngit log feature/gate-workflow-tool -1 --format='%H %s' | head -1\necho \"=== files in commit ===\" \ngit show --stat --oneline HEAD | head -6",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9f90e6a9-c534-4bbe-8c33-28b7ec8cb0f4.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "9f90e6a9-c534-4bbe-8c33-28b7ec8cb0f4",
+      "timestamp": "2026-05-29T01:12:33.383Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\necho \"=== HEAD / branch ===\" && git branch --show-current && git log -1 --format='%H %s'\necho \"=== content/2026-05-29 SHA (重生的?) ===\" && git log content/2026-05-29 -1 --format='%H %s' 2>/dev/null\necho \"=== main SHA + 近 4 commit ===\" && git log main -4 --format='%h %s'\necho \"=== survey 在 main? ===\" && git ls-tree main -- contexts/survey_sessions/2026-05-29_claude-code-workflow-tool-survey.md --name-only\necho \"=== content/2026-05-29 vs main 差異 ===\" && git log main..content/2026-05-29 --oneline 2>/dev/null && echo \"--- main..content end ---\"\necho \"=== 所有 local branches ===\" && git branch\necho \"=== worktree list ===\" && git worktree list",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/9f90e6a9-c534-4bbe-8c33-28b7ec8cb0f4.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "a18c8308-c302-409b-9847-fb3e586b2c50",
+      "timestamp": "2026-05-28T23:41:12.516Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal/.claude/worktrees/27001-support\nset -e\necho \"=== create + switch to content/2026-05-29 from main ===\"\ngit checkout -b content/2026-05-29 main\necho \"=== work_logs survived switch? ===\"\nls -1 contexts/work_logs/2026-05-2{8,9}_27001-support_update.md\necho \"=== [2/2] content commit ===\"\ngit add contexts/work_logs/2026-05-28_27001-support_update.md contexts/work_logs/2026-05-29_27001-support_update.md\ngit commit -m \"logs: add 27001-support work logs (5/28 backlog + 5/29 checkpoint)\"\necho \"CONTENT_SHA=$(git rev-parse --short HEAD)\"\necho \"=== switch back to project/27001-support ===\"\ngit checkout project/27001-support\necho \"=== final branch + clean tree ===\"\ngit branch --show-current\ngit status --short && echo \"(clean)\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/a18c8308-c302-409b-9847-fb3e586b2c50.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b4b09adb-4431-4a27-a15a-75de109b6b45",
+      "timestamp": "2026-05-28T06:23:09.736Z",
+      "command": "git checkout -b project/cloud-ops-handoff-intake main && mkdir -p projects/cloud-ops-handoff-intake/context && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b4b09adb-4431-4a27-a15a-75de109b6b45.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b4b09adb-4431-4a27-a15a-75de109b6b45",
+      "timestamp": "2026-05-28T06:29:54.115Z",
+      "command": "git checkout -b project/cloud-ops-handoff-intake main && mkdir -p projects/cloud-ops-handoff-intake/context && git symbolic-ref --short HEAD",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b4b09adb-4431-4a27-a15a-75de109b6b45.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b4b09adb-4431-4a27-a15a-75de109b6b45",
+      "timestamp": "2026-05-28T08:31:46.531Z",
+      "command": "echo \"=== [1/2] content/2026-05-28 ===\"\ngit add .gitignore infra/adhoc_jobs/cloud_intake_dump\ngit status --short --cached\necho \"---\"\ngit checkout -b content/2026-05-28 main 2>&1\ngit commit -m \"adhoc: add cloud_intake_dump tools (jira REST + gitlab/github clone)\" 2>&1 | tail -5\necho \"\"\necho \"=== back to project + [2/2] ===\"\ngit checkout project/cloud-ops-handoff-intake 2>&1\ngit add projects/cloud-ops-handoff-intake projects/INDEX.md\ngit status --short --cached\necho \"---\"\ngit commit -m \"project(cloud-ops-handoff-intake): phase 1 setup + dump summary\" 2>&1 | tail -5\necho \"\"\necho \"=== final ===\"\ngit symbolic-ref --short HEAD\ngit status --short\necho \"---log recent---\"\ngit log --oneline -3 project/cloud-ops-handoff-intake\necho \"---content branch---\"\ngit log --oneline -3 content/2026-05-28",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/b4b09adb-4431-4a27-a15a-75de109b6b45.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "ec2f6187-8157-4f9c-b453-49260cd4b6c5",
+      "timestamp": "2026-05-26T00:58:58.427Z",
+      "command": "cd /Users/dj_workstation/Documents/Projects/Exocortex-personal\ngit checkout -b project/max5x-dispatch-architecture main\necho \"===\"\ngit branch --show-current\necho \"===\"\nmkdir -p projects/max5x-dispatch-architecture/context\nls projects/max5x-dispatch-architecture/",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/ec2f6187-8157-4f9c-b453-49260cd4b6c5.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "f5adf182-986f-429a-8bb4-aa690a1dc6fd",
+      "timestamp": "2026-05-26T01:49:59.431Z",
+      "command": "git checkout -b content/2026-05-26 main 2>&1 | tail -3 && echo \"---added work_log---\" && git add contexts/work_logs/2026-05-26_axiom-eval-scan-tcc-bypass.md inbox/todos.md infra/periodic_jobs/SCHEDULE.md infra/periodic_jobs/launch_agents/be.keepthinking.axiom_eval_scan.plist infra/periodic_jobs/launch_agents/install.sh infra/periodic_jobs/tasker/.cron.log infra/periodic_jobs/tasker/cases/INDEX.md infra/periodic_jobs/tasker/cases/TK26052222ZMCB60.json infra/state/system_state.json && echo \"---staged---\" && git diff --cached --stat | tail -15",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f5adf182-986f-429a-8bb4-aa690a1dc6fd.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "f5adf182-986f-429a-8bb4-aa690a1dc6fd",
+      "timestamp": "2026-05-26T02:50:09.095Z",
+      "command": "git checkout -b feature/add-axiom-multi-signal-state-assertion main 2>&1 | tail -3 && echo \"---branch---\" && git branch --show-current && echo \"---untracked still there---\" && git status -s | head -5",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f5adf182-986f-429a-8bb4-aa690a1dc6fd.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "f5adf182-986f-429a-8bb4-aa690a1dc6fd",
+      "timestamp": "2026-05-26T03:05:36.077Z",
+      "command": "echo \"HEAD: $(git symbolic-ref --quiet HEAD >/dev/null && echo ATTACHED || echo DETACHED)\"; echo \"current: $(git branch --show-current)\"; echo \"main vs origin: $(git rev-list --left-right --count main...origin/main)\"; echo \"---open feature branch---\"; git checkout -b feature/add-resume-merge-main-detection main 2>&1 | tail -3",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f5adf182-986f-429a-8bb4-aa690a1dc6fd.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "f95a1d5e-c631-4cab-991e-5470a8931cbc",
+      "timestamp": "2026-05-26T17:56:29.550Z",
+      "command": "git checkout -b content/2026-05-27 main && \\\ngit add memory/OBSERVATIONS.md \\\n  infra/periodic_jobs/launch_agents/be.keepthinking.capture.plist \\\n  infra/periodic_jobs/launch_agents/be.keepthinking.observer.plist \\\n  inbox/digest_escalations.md \\\n  inbox/captured/heptabase/article/2026-05-26.md \\\n  infra/state/digest_history.jsonl \\\n  infra/state/system_state.json && \\\ngit status --short && \\\ngit commit -m \"content: 2026-05-27 daily snapshot (cron residue + heptabase article)\" && \\\ngit checkout main && \\\ngit branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/f95a1d5e-c631-4cab-991e-5470a8931cbc.jsonl"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "fb7d0a61-4d06-4879-bb68-ba506558b941",
+      "timestamp": "2026-05-25T23:00:04.020Z",
+      "command": "git checkout -b content/2026-05-26 main && git add inbox/digest_escalations.md inbox/ideas.md infra/state/digest_history.jsonl infra/state/system_state.json memory/OBSERVATIONS.md inbox/captured/heptabase/article/2026-05-25.md && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Documents-Projects-Exocortex-personal/fb7d0a61-4d06-4879-bb68-ba506558b941.jsonl"
+    }
+  ]
+}

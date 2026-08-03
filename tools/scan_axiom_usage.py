@@ -19,6 +19,13 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from transcript_source import (
+    TranscriptEnvironmentError,
+    describe_dirs,
+    enumerate_transcript_dirs,
+    iter_transcripts,
+)
+
 # axiom a09 only fires on branch-CREATION commands:
 #   git checkout -b <name> [<base>]
 #   git branch <name> [<base>]    (NOT -d/-D/-m/--show-current/etc)
@@ -44,15 +51,6 @@ class Candidate:
     source_path: str
 
 
-def encode_cwd(cwd: str) -> str:
-    # Claude Code transcripts encode `/` and `_` (and similar non-word chars)
-    # to `-`. e.g. /Users/dj_workstation/... → -Users-dj-workstation-...
-    return "-" + cwd.replace("/", "-").replace("_", "-").lstrip("-")
-
-
-def transcript_dir_for(exocortex_root: Path) -> Path:
-    encoded = encode_cwd(str(exocortex_root.resolve()))
-    return Path.home() / ".claude" / "projects" / encoded
 
 
 def iter_bash_commands(jsonl_path: Path):
@@ -141,10 +139,16 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Stage 1 axiom evidence scanner")
     ap.add_argument("--axiom", required=True, help="axiom id (e.g. a09)")
     ap.add_argument("--days", type=int, default=7)
+    # No default: a hardcoded path is an environment assumption that the
+    # scheduling layer's template substitution cannot keep in sync. When the
+    # repo moved out of ~/Documents (2026-06-07) the stale default silently
+    # pointed at a vanished directory for 8 weeks. The plist passes this
+    # explicitly via __REPO_ROOT__.
     ap.add_argument(
         "--exocortex-root",
         type=Path,
-        default=Path.home() / "Documents" / "Projects" / "Exocortex-personal",
+        required=True,
+        help="absolute path to the Exocortex-personal repo root",
     )
     ap.add_argument(
         "--output-dir",
@@ -159,12 +163,15 @@ def main() -> int:
         print(f"error: axiom {args.axiom} not supported (current: {list(SCANNERS)})", file=sys.stderr)
         return 2
 
-    tdir = transcript_dir_for(args.exocortex_root)
-    if not tdir.exists():
-        print(f"warn: transcript dir not found: {tdir}", file=sys.stderr)
-        jsonls: list[Path] = []
-    else:
-        jsonls = sorted(tdir.glob("*.jsonl"))
+    # Fail loud: a missing environment is not a zero-candidate result.
+    # Raising here means no output file is written, so a stale newest file in
+    # data/ is itself the signal that the pipeline is broken (see design D5).
+    try:
+        tdirs = enumerate_transcript_dirs(args.exocortex_root)
+    except TranscriptEnvironmentError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 3
+    jsonls = list(iter_transcripts(tdirs))
 
     days_cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
     applies_from = read_applies_from(args.axiom, Path(__file__).resolve().parent.parent)
@@ -206,12 +213,19 @@ def main() -> int:
         "window_days": args.days,
         "applies_from": applies_from.date().isoformat() if applies_from else None,
         "effective_cutoff": cutoff.isoformat(),
-        "transcript_dir": str(tdir),
+        # scanned_dirs marks the measurement scope. Scans before 2026-08
+        # covered only the main checkout and systematically undercounted;
+        # presence of this field distinguishes the two calibrations.
+        "scanned_dirs": describe_dirs(tdirs),
+        "sessions_scanned": len(jsonls),
         "total_candidates": len(candidates),
         "candidates": [asdict(c) for c in candidates],
     }
     out.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"wrote {out} ({len(candidates)} candidates over {args.days}d)")
+    print(
+        f"wrote {out} ({len(candidates)} candidates over {args.days}d; "
+        f"{len(jsonls)} sessions across {len(tdirs)} dirs)"
+    )
     return 0
 
 
