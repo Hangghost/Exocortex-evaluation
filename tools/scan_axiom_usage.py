@@ -40,6 +40,14 @@ CHECKOUT_PATTERNS = [
 ]
 
 
+class WindowError(ValueError):
+    """Raised when --date/--since/--until produce an inconsistent or invalid window."""
+
+
+class OverwriteRefused(RuntimeError):
+    """Raised when an existing output file's window differs from this run's."""
+
+
 @dataclass
 class Candidate:
     axiom_id: str
@@ -104,6 +112,91 @@ def scan_a09(cmd: str) -> tuple[bool, bool] | None:
     return None
 
 
+def parse_iso_date(s: str) -> datetime:
+    """Parse an ISO 'YYYY-MM-DD' date into a UTC midnight datetime.
+
+    Raises WindowError (not a bare ValueError) so callers surface one
+    scanner-specific message instead of a strptime traceback.
+    """
+    try:
+        return datetime.strptime(s, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except ValueError as e:
+        raise WindowError(f"invalid date {s!r} (expected YYYY-MM-DD): {e}") from e
+
+
+def compute_window(
+    date_arg: str | None,
+    days: int,
+    since_arg: str | None,
+    until_arg: str | None,
+    applies_from: datetime | None,
+) -> tuple[str, datetime, datetime]:
+    """Resolve (label, effective_cutoff, window_until) from CLI args.
+
+    Design: --date sets BOTH the output label and the window's upper bound
+    (until), so a bare `--date X --days N` scan is structurally guaranteed to
+    write to a file named after the window it actually covers — the original
+    defect was label and window being computed independently (label from
+    args.date, window always from datetime.now()). --since/--until are
+    explicit overrides for backfill scans. When --date and --until are both
+    given and disagree, that is a contradiction the caller must resolve, not
+    something to silently pick a winner for.
+    """
+    if date_arg and until_arg:
+        if parse_iso_date(date_arg) != parse_iso_date(until_arg):
+            raise WindowError(
+                f"--date {date_arg} and --until {until_arg} disagree; "
+                "pass matching values or omit one"
+            )
+
+    label = date_arg or until_arg or datetime.now().strftime("%Y-%m-%d")
+
+    until_source = until_arg or date_arg
+    if until_source:
+        # until is inclusive of the given calendar day, so the boundary sits
+        # at the start of the following day.
+        window_until = parse_iso_date(until_source) + timedelta(days=1)
+    else:
+        window_until = datetime.now(timezone.utc)
+
+    since_dt = parse_iso_date(since_arg) if since_arg else window_until - timedelta(days=days)
+    if since_dt >= window_until:
+        raise WindowError(
+            f"--since ({since_dt.date()}) is not before the window's upper bound "
+            f"({window_until.date()})"
+        )
+
+    effective_cutoff = max(since_dt, applies_from) if applies_from else since_dt
+    if applies_from and applies_from > since_dt:
+        print(f"info: applies_from={applies_from.date()} narrows window from {since_dt.date()}", file=sys.stderr)
+
+    return label, effective_cutoff, window_until
+
+
+def check_overwrite(out_path: Path, effective_cutoff: datetime, window_until: datetime, force: bool) -> None:
+    """Refuse to overwrite `out_path` if its recorded window differs from this run's.
+
+    Same label with a different measured window means the previous batch's
+    data would be silently replaced by data covering a different period —
+    exactly the corruption this feature exists to prevent. --force overrides.
+    """
+    if force or not out_path.exists():
+        return
+    try:
+        existing = json.loads(out_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        raise OverwriteRefused(f"cannot read existing {out_path} to compare windows: {e}") from e
+    existing_cutoff = existing.get("effective_cutoff")
+    existing_until = existing.get("window_until")
+    if existing_cutoff != effective_cutoff.isoformat() or existing_until != window_until.isoformat():
+        raise OverwriteRefused(
+            f"{out_path} already exists with a different window "
+            f"(effective_cutoff={existing_cutoff!r}, window_until={existing_until!r}); "
+            f"this run computed (effective_cutoff={effective_cutoff.isoformat()!r}, "
+            f"window_until={window_until.isoformat()!r}). Pass --force to overwrite."
+        )
+
+
 SCANNERS = {"a09": scan_a09}
 
 # axiom_id → card filename within axioms/
@@ -155,7 +248,18 @@ def main() -> int:
         type=Path,
         default=Path(__file__).resolve().parent.parent / "data",
     )
-    ap.add_argument("--date", help="override scan label date (default: today)")
+    ap.add_argument(
+        "--date",
+        help="scan label date (YYYY-MM-DD); also sets the window's upper "
+        "bound (until) unless --until is given explicitly (default: today/now)",
+    )
+    ap.add_argument("--since", help="explicit window lower bound (YYYY-MM-DD); overrides --days")
+    ap.add_argument("--until", help="explicit window upper bound (YYYY-MM-DD); must agree with --date if both given")
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="overwrite an existing output file even if its recorded window differs from this run's",
+    )
     args = ap.parse_args()
 
     scanner = SCANNERS.get(args.axiom)
@@ -173,11 +277,12 @@ def main() -> int:
         return 3
     jsonls = list(iter_transcripts(tdirs))
 
-    days_cutoff = datetime.now(timezone.utc) - timedelta(days=args.days)
     applies_from = read_applies_from(args.axiom, Path(__file__).resolve().parent.parent)
-    cutoff = max(days_cutoff, applies_from) if applies_from else days_cutoff
-    if applies_from and applies_from > days_cutoff:
-        print(f"info: applies_from={applies_from.date()} narrows window from {days_cutoff.date()}", file=sys.stderr)
+    try:
+        label, cutoff, window_until = compute_window(args.date, args.days, args.since, args.until, applies_from)
+    except WindowError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 4
     candidates: list[Candidate] = []
 
     for jsonl in jsonls:
@@ -186,7 +291,7 @@ def main() -> int:
             dt = parse_iso(ts)
             if dt is None:
                 continue
-            if dt < cutoff:
+            if dt < cutoff or dt >= window_until:
                 continue
             result = scanner(cmd)
             if result is None:
@@ -204,15 +309,20 @@ def main() -> int:
                 )
             )
 
-    label = args.date or datetime.now().strftime("%Y-%m-%d")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     out = args.output_dir / f"{label}_candidates.json"
+    try:
+        check_overwrite(out, cutoff, window_until, args.force)
+    except OverwriteRefused as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 5
     payload = {
         "axiom_id": args.axiom,
         "scan_date": label,
         "window_days": args.days,
         "applies_from": applies_from.date().isoformat() if applies_from else None,
         "effective_cutoff": cutoff.isoformat(),
+        "window_until": window_until.isoformat(),
         # scanned_dirs marks the measurement scope. Scans before 2026-08
         # covered only the main checkout and systematically undercounted;
         # presence of this field distinguishes the two calibrations.
@@ -222,8 +332,10 @@ def main() -> int:
         "candidates": [asdict(c) for c in candidates],
     }
     out.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    window_days = (window_until - cutoff).days
     print(
-        f"wrote {out} ({len(candidates)} candidates over {args.days}d; "
+        f"wrote {out} ({len(candidates)} candidates over {window_days}d "
+        f"[{cutoff.date()}, {window_until.date()}); "
         f"{len(jsonls)} sessions across {len(tdirs)} dirs)"
     )
     return 0
