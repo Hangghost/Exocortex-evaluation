@@ -56,9 +56,12 @@ compliance 統計 SHALL 先排除此處列出的批次。
 `[repo:exocortex-evaluation][ticket:add-historical-window-rescan]` 正式處理
 （登記在 Exocortex `inbox/todos.md` 跨 repo handoff 節）。
 
-**Stage 2 處置**：這 8 批**不會**產出 `*_human_review.json`，因此會持續被
-`state_audit` 的 `axiom_eval_review_backlog` 計為 pending。這是刻意的——
-現行 pipeline 沒有「盲區、不可審」這個終態，唯一的結案方式是產出
-human_review.json，而那等同於宣稱審過了一個從未被掃描的窗口。**寧可讓計數
-持續偏高，也不要用假的結案換取乾淨的儀表板**（axiom `v01`：聚合綠燈只驗證
-「有沒有」，不驗證「對不對」）。
+**Stage 2 處置**：這 8 批**不會**產出 `*_human_review.json`——那等同於宣稱審過
+了一個從未被掃描的窗口（axiom `v01`：聚合綠燈只驗證「有沒有」，不驗證「對不對」）。
+
+自 2026-09-17（使用者決定）起，Exocortex `state_audit` 的
+`axiom_eval_review_backlog` 讀取本檔表格首欄日期，把登記在此的批次**排除於
+pending 計數之外**，只在 `detail.excluded_data_gap_batches` 回報排除的批次數
+（不帶日期）。因此本檔同時是 backlog 計數的排除清單：**新增或移除一列會直接
+改變 audit 的 pending 數**，登記前須確認該批確實是掃描盲區，而非「還沒審」。
+（2026-09-26 更新；舊文字寫「會持續被計為 pending」，已不成立。）
