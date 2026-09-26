@@ -7,3 +7,6 @@ __pycache__/
 .DS_Store
 *.swp
 *.tmp
+
+# regenerable visual review pages (tools/render_review_page.py)
+dashboards/review_*.html

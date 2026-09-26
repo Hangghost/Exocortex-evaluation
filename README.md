@@ -36,6 +36,8 @@ tools/         觀測 script
   scan_axiom_reads.py      Stage 1：全 axiom read-frequency（無需 per-axiom 設定）
   render_review_dashboard  Stage 2 a：candidates.json → markdown checklist
   parse_human_review.py    Stage 2 b：reviewed markdown → human_review.json
+  render_review_page.py    Stage 2 a（視覺版）：所有待審批次 → 單檔 HTML 審閱頁
+  import_review_json.py    Stage 2 b（視覺版）：審閱頁匯出的 JSON → human_review.json
   llm_judge.py             Stage 3：human_review.json → axiom card（human-triggered）
 data/          各次 scan 的 raw + reviewed snapshot
   <date>_candidates.json
@@ -68,6 +70,19 @@ Stage 3 (human-triggered, LLM)
   tools/llm_judge.py
     └─ output: axioms/<id>.md (evaluation card updated)
 ```
+
+**Stage 2 的視覺版**（與 markdown checklist 等價，產物逐欄位相同，Stage 3 分不出來源）：
+
+```bash
+python3 tools/render_review_page.py                       # → dashboards/review_<today>.html（全部待審批次）
+# 瀏覽器開啟逐張標記（鍵盤 1–4、j/k），按 Export JSON
+python3 tools/import_review_json.py <export.json> --dry-run
+python3 tools/import_review_json.py <export.json>         # 只寫整批標完的；既有結果不覆蓋（--force 例外）
+```
+
+待審批次＝有候選、尚無 `human_review.json`、且未登記於 `data/DATA_GAPS.md`。頁面零外部依賴，可複製到任何機器以
+`file://` 開啟；標記存在該瀏覽器的 localStorage，須在標記的那台匯出。任何格式錯誤（編號越界、status 無效、
+axiom 或候選數與 candidates.json 不符）→ 一筆都不寫。
 
 **Stage 2 是強制 gate**：Stage 3 不存在 human_review.json 直接 abort，cron 永遠不會 auto-burn token。
 
