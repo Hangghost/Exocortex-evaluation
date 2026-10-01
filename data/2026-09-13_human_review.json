@@ -1,0 +1,77 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-09-13",
+  "reviewed_at": "2026-09-27T16:06:59",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "26bc67ff-5e7f-4b97-a27c-e0a04df678aa",
+      "timestamp": "2026-09-10T18:51:46.570Z",
+      "command": "set -e\nif git rev-parse --verify content/2026-09-10 >/dev/null 2>&1; then\n  git checkout content/2026-09-10\nelse\n  git checkout -b content/2026-09-10 main\nfi\necho \"---\"\ngit branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/26bc67ff-5e7f-4b97-a27c-e0a04df678aa.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "3946f07f-f4d0-4c5b-8d38-8a842bf11f85",
+      "timestamp": "2026-09-07T18:30:12.328Z",
+      "command": "git checkout -b content/2026-09-08 main\ngit add memory/OBSERVATIONS.md memory/observations_archive/2026-W37.md\ngit status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/3946f07f-f4d0-4c5b-8d38-8a842bf11f85.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "5b46aca7-15c4-4978-8e11-40b9792c6b65",
+      "timestamp": "2026-09-07T10:10:21.954Z",
+      "command": "cat >> contexts/work_logs/2026-09-07_resume-refresh_update.md <<'WLEOF'\n\n## 18:09\n\n### 進展\n\n**架構決策：履歷能力抽離專案容器——`add-career-asset-layer` 已 propose 並 push**\n\n本輪起點是使用者的一句反駁：專案初衷是「建立履歷工具，讓 Exocortex 未來能順暢取得、累積資料\n並改履歷」，不是只產出一批 artifact。順著這條線重新檢視，**17:28 那輪的 A／B 收尾二分是個假問題**\n——兩者都在「履歷資產綁在專案容器內」這個前提下打轉，而該前提本身才是要處理的東西。\n\n**Exocortex 的擴展機制盤點**（回答使用者「目前有這種新增工具或工作流的能力嗎」）：有，而且依形狀分四種，\n全部有正式規約（`rules/ARCHITECTURE.md` §擴展點）。本專案產出四種形狀的東西，**只有方法論已對位**：\n\n| 形狀 | 機制 | 現況 |\n|---|---|---|\n| 方法論（怎麼做） | `personal-skills/<name>/SKILL.md` + `manifest.yaml` | ✅ `profile-revamp`，trigger 含「改履歷」 |\n| 確定性工具（跑指令） | skill `scripts/`（PEP 723）或 `infra/tools/` | ❌ render 走 pyenv 全域、不在 `pyproject.toml` |\n| 工作流入口（slash command） | `.claude/commands/<ns>/` + capability spec | ❌ 無 |\n| 知識庫路由（資料在哪） | `registry/<domain>.md` + `library/` card | ❌ `registry/career.md` 指 Notion |\n\n**三個實查出的事實**（非推論）：\n\n1. **CV yaml 零引用 STAR 檔**——`grep -c 'B1\\|star_materials'` 對 `Hung-Lun_Chen_CV.yaml` 與\n   `CV_full.yaml` 皆回 0。事實層與渲染層之間是人手抄寫，沒有機械連結。\n2. **`registry/career.md` 指向 Notion**（stale），且 `library/INDEX.md` 對 resume/CV/履歷 三個關鍵字\n   零命中——`library/README.md` 預留的 `type: resume` 從未被用。系統沒有一條路由指到真實位置。\n3. **`project/resume-refresh` 領先 main 7 commits**——搬遷的硬前置（見下）。\n\n**根因判定**：`project-context-layer` spec 明文「Materials remain in original locations——PROJECT.md\n只記錄路徑指針」，本專案卻反過來把 35 份 STAR、15 份 CV yaml、Jira raw、平台文案**住進**專案目錄。\n`projects/` 是走 `active → completed → archived` 狀態機的容器，而這些是**沒有終點的慢速狀態資產**。\n`context/TOOLCHAIN.md` 那份「complete 後怎麼改履歷」的文件，整份都在替這個形狀錯置打補丁。\n\n**產出：openspec change `add-career-asset-layer`（完整軌）**\n\n- 軌別判定為**完整軌**（新增 capability requirement，非機械替換）；四份 artifact 齊備，\n  `openspec validate --strict` 通過、`openspec status` 4/4。\n- 新 capability：`career-asset-layer`（頂層 `career/` 的結構、形狀邊界、l0 導航、observer 不掃、\n  `git mv` 保血緣）、`resume-render-skill`（PEP 723 render 腳本、版本 pin、EN／ZH 單一入口、\n  patched theme 驗證、改履歷檢查清單）。\n- ADDED delta：`context-registry`（registry 改指 `career/`、移除 Notion）、`architecture-map`\n  （`career/` 區塊）、`profile-revamp`（Step 5 指向 `career/star/` 事實層）。\n- 形狀切分：state-shaped（`star_materials/` / `rendercv/` / `jira_raw/` / 三份平台文案）搬入 `career/`；\n  event-shaped（`target_jobs/`、`headhunter_agent_intro.md`、`platform_strategy.md`、2024-04 舊版 PDF、\n  `context/`、`PROJECT.md`）留在專案。\n- commit `1d37b8fd`（10 檔、409 行），分支 `feature/add-career-asset-layer` 已 push。\n\n**使用者的兩個決定**（AskUserQuestion）：\n\n- **落點為新頂層 `career/`**（而非 `library/career/` 或 `contexts/career/`）——判準是形狀語義：\n  `library/` 是「index card 指向外部 binary 收藏」，35 份 markdown 一手事實放進去會扭曲該層定位；\n  `contexts/` 是 event-shaped 且會被 observer 掃。\n- **累積流拆成第二個 change**——訊號源（work_logs / Jira 增量 / complete retrospective）本身有分歧，\n  不該拖慢搬遷落地。\n\n**收尾方式因此解消**：A（dormant）／B（complete + 手動重建分支說明）皆已否決／部分保留。\n新路徑是 `add-career-asset-layer` 落地後乾淨 complete——**改履歷不再經過這個專案**，\n撞牆前提消失，B 所需的那份重建說明也不必寫。\n\n### 經驗與觀察\n\n- **「專案要怎麼收尾」問不出答案時，往往是容器選錯了**。17:28 那輪花了整輪查證 `completed` 專案的\n  後續編輯路徑（查了 `/ctx:content` Step 4.2、`resume` Step 2、spec 無明文、兩個既有 completed 專案\n  零先例、dormant 與 completed 的唯一結構差異），結論卻是「兩條路都有代價」。查證本身沒錯、事實也\n  仍然成立，但**問題被框在「這個專案怎麼結束」，而真正的問題是「這些東西為什麼在專案裡」**。\n  使用者一句「初衷是建立履歷工具」就換掉了框架。\n- **形狀錯置的訊號是「有一份文件專門在解釋怎麼繞過系統」**。`context/TOOLCHAIN.md` §四「情境 B：\n  complete 後先手動 `git checkout -b project/resume-refresh main` 重建分支」——當補丁文件出現時，\n  該問的是「為什麼需要繞」而不是「繞法對不對」。\n- **`registry/` 層的 stale 是靜默的**：`registry/career.md` 指 Notion 指了多久沒人知道，因為沒有任何\n  機制會發現「路由指到的地方已經不是 SSOT」。與 `library_index_drift` 這類 audit finding 相比，\n  registry 沒有對應的偵測器（axiom `t35` 的形態：沒有 known-positive fixture 的偵測器不存在時，\n  「零結果」與「它壞了」外觀相同——這裡連偵測器都沒有）。\n- **工具鏈的可攜性缺口被正確記錄卻沒被修**：`TOOLCHAIN.md` 明寫「這是最大可攜性缺口，若要修就在\n  `pyproject.toml` 新增 resume group，未修的理由是體積大且只有這個專案用——**這是判斷不是遺漏**」。\n  判斷本身合理，但它把選項限縮成「進主 venv 或不修」二選一，漏掉了第三個：PEP 723 inline metadata\n  （`personal-skills/README.md` 明文的預設路徑）。**記錄得越清楚的取捨，越少被重新檢視。**\n\n### 下一步\n\n1. `add-career-asset-layer` 走 apply → archive → commit → `/ctx:merge`（已派工獨立 session）\n2. 本專案 `resume --merge-main` 帶進 rename，`/ctx:project update` 改材料地圖指針\n3. `/ctx:project complete resume-refresh`（含 retrospective）\n4. **A′ 投後追問 AICS headcount — 09-09 觸發，距今 2 天**（與架構線平行，不互相阻擋）\nWLEOF\nwc -l contexts/work_logs/2026-09-07_resume-refresh_update.md",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/5b46aca7-15c4-4978-8e11-40b9792c6b65.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "66ac2345-374b-4a93-b7bb-809233b4adac",
+      "timestamp": "2026-09-08T18:56:04.682Z",
+      "command": "git checkout -b content/2026-09-09 origin/content/2026-09-09 2>&1 | tail -4",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/66ac2345-374b-4a93-b7bb-809233b4adac.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "a30b1fca-77a2-44c4-a812-2f4b85792d6f",
+      "timestamp": "2026-09-07T01:21:10.916Z",
+      "command": "git checkout -b content/2026-09-07 main",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/a30b1fca-77a2-44c4-a812-2f4b85792d6f.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "e1dd6cf9-f4d9-4ebc-baaf-89f108c3ef3e",
+      "timestamp": "2026-09-12T13:14:02.801Z",
+      "command": "git branch content/2026-09-12 main",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/e1dd6cf9-f4d9-4ebc-baaf-89f108c3ef3e.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "bd04b8b4-44ab-4a67-98f1-9607e540ff53",
+      "timestamp": "2026-09-10T18:03:13.538Z",
+      "command": "git branch content/2026-09-11 main && git branch --list content/2026-09-11",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-exocortex-app/bd04b8b4-44ab-4a67-98f1-9607e540ff53.jsonl",
+      "status": "manual_compliance"
+    }
+  ]
+}

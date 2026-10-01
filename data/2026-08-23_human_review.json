@@ -1,0 +1,127 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-08-23",
+  "reviewed_at": "2026-09-27T16:06:59",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "42cb59c9-0730-453f-9119-a50d4d4bda04",
+      "timestamp": "2026-08-20T04:01:14.897Z",
+      "command": "git checkout -b content/2026-08-20 main",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/42cb59c9-0730-453f-9119-a50d4d4bda04.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "42cb59c9-0730-453f-9119-a50d4d4bda04",
+      "timestamp": "2026-08-20T10:18:02.610Z",
+      "command": "git checkout -b feature/add-blog-backlog-triage main 2>&1 | tail -2 && git branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/42cb59c9-0730-453f-9119-a50d4d4bda04.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "42cb59c9-0730-453f-9119-a50d4d4bda04",
+      "timestamp": "2026-08-20T10:51:52.465Z",
+      "command": "git checkout -b feature/add-idea-first-longform-pipeline main 2>&1 | tail -2 && git branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/42cb59c9-0730-453f-9119-a50d4d4bda04.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "4f6a7fc9-1b71-4ea1-aab1-3bcc1dcac210",
+      "timestamp": "2026-08-17T12:29:28.726Z",
+      "command": "git checkout -b content/2026-08-17 main",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/4f6a7fc9-1b71-4ea1-aab1-3bcc1dcac210.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "53d394cd-0c28-4022-80a4-78c9e1a7636a",
+      "timestamp": "2026-08-20T14:02:04.389Z",
+      "command": "git checkout -b feature/improve-eod-run-efficiency main 2>&1 | tail -2; git status --short | head -8",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/53d394cd-0c28-4022-80a4-78c9e1a7636a.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "7a03f571-9b5d-4a38-9419-bfbced8c7b0a",
+      "timestamp": "2026-08-19T06:07:05.208Z",
+      "command": "git branch feature/week-tier1-1a-1b-split d85ddb65",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/7a03f571-9b5d-4a38-9419-bfbced8c7b0a.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "892e2d75-7ba6-446d-8475-8170bcafa696",
+      "timestamp": "2026-08-21T02:01:56.615Z",
+      "command": "cd ~/Code/session-dispatch && git checkout -b release/v0.2.0 main && git add -A && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/892e2d75-7ba6-446d-8475-8170bcafa696.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "892e2d75-7ba6-446d-8475-8170bcafa696",
+      "timestamp": "2026-08-21T02:30:46.015Z",
+      "command": "cd ~/Code/session-dispatch && git checkout -b docs/release-convention main 2>&1 | tail -2",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/892e2d75-7ba6-446d-8475-8170bcafa696.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "892e2d75-7ba6-446d-8475-8170bcafa696",
+      "timestamp": "2026-08-21T03:05:48.935Z",
+      "command": "cd ~/Code/session-dispatch && git checkout -b release/v0.2.1 main 2>&1 | tail -2",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/892e2d75-7ba6-446d-8475-8170bcafa696.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "8b11bdf8-a5b8-492f-96f5-1588a0ab2f6d",
+      "timestamp": "2026-08-21T04:02:01.174Z",
+      "command": "git checkout -b content/2026-08-21 main 2>&1 && git branch --show-current",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/8b11bdf8-a5b8-492f-96f5-1588a0ab2f6d.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b74f225a-08ca-4303-80a9-76bfb7013844",
+      "timestamp": "2026-08-21T17:45:30.729Z",
+      "command": "git checkout -b content/2026-08-22 main 2>&1",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/b74f225a-08ca-4303-80a9-76bfb7013844.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "e001c4de-2ab9-48f9-9500-047088bad267",
+      "timestamp": "2026-08-19T07:45:16.685Z",
+      "command": "cd /Users/dj_workstation/Code/Exocortex-personal\necho \"=== 遠端是否也有這條分支 ===\"; git ls-remote origin refs/heads/content/2026-08-19\necho\ngit branch -D content/2026-08-19\ngit checkout -b content/2026-08-19 main 2>&1 | tail -2\necho \"  現在分支: $(git branch --show-current)  base: $(git rev-parse --short HEAD)\"\necho \"  落後 main: $(git rev-list --count HEAD..main) commits\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/e001c4de-2ab9-48f9-9500-047088bad267.jsonl",
+      "status": "manual_compliance"
+    }
+  ]
+}
