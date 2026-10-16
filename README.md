@@ -105,6 +105,14 @@ Stage 1 有兩支 scanner，量的是不同的東西，**不互相取代**：
 - read-freq 為 0 + compliance 高 → 效果來自別處，axiom 本體是**退役候選**
 - read-freq 為 0 + 無其他來源 → 死重量
 
+**計數口徑（`scan_axiom_reads.py`）**：
+
+- 計入 `Read`／`Grep`／`Glob` 的路徑引數，以及 **Bash 中實際印出檔案內容的指令**：for-loop 內對迴圈變數執行 `cat`／`head`／`sed` 等、或指令（以 `;`／`&&`／換行切段）首段輸出動詞為 `cat` 等的 pipeline。CLAUDE.md 規定的開機讀法就是 for-loop `cat`，只計工具讀取會把 INDEX 讀取率低估約一半。
+- **不計** `grep`／`ls`／`wc`／`find` 掃目錄、展開超過 3 檔的 glob、以及指令本身寫入的目標檔。
+- 依 transcript 的 `entrypoint` 分組：`sdk-cli`／`sdk-ts`／`sdk-py` 視為管線（observer／reflector 等無人值守 job），其餘視為互動。`per_axiom`／`never_read` **只含互動 session**，管線讀取另列 `per_axiom_pipeline`；`sessions_*` 為全部 entrypoint 合計，分組見 `by_entrypoint`。
+- 窗口以 session 檔 mtime 判定（整個 session 的讀取都計）；與以 record timestamp 切窗的獨立驗證腳本相比，差在「窗口前開始的 session」，屬口徑差異而非判定差異。
+- **已知盲區**：path-scoped rules（`paths:` frontmatter）的載入不經任何 tool call，掃描器看不到；此類 axiom 的 read-frequency 為下界。
+
 **排序依賴**：read-frequency 在 Exocortex 的 injection 層修好之前恆為接近 0（axiom index 進 `rules/CORE.md` 必讀清單之前，agent 幾乎不會主動去讀）。2026-08-02 基準：6/928 session（0.6%）、53 條中 46 條零讀取。
 
 ## Fail-loud 契約
