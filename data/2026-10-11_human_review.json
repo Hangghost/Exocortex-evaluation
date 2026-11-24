@@ -1,0 +1,37 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-10-11",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "7ddc43df-1c90-4d8f-bd64-6c7481e8d7fe",
+      "timestamp": "2026-10-07T20:10:32.344Z",
+      "command": "git checkout -b content/2026-10-08 main && git add inbox/reading_list.md infra/periodic_jobs/archive_pipeline/state/archival_history.jsonl infra/state/digest_history.jsonl contexts/archive/article/2026-10-07_*_6aaee0a3.md contexts/archive/github/2026-10-07_pjwang2022-trace-by-hand-whiteboard.md contexts/archive/threads/2026-10-07_klaus-a5100996-on-threads_a4133197.md inbox/captured/heptabase/skill_blog_design/2026-10-07.md && git commit -q -m \"content: 2026-10-07 夜間 archive_pipeline 歸檔與 inbox digest 產出\" && git show --stat --format='%h %s' HEAD | head -12; git checkout -q main; echo \"== now on: $(git branch --show-current)\"; git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/7ddc43df-1c90-4d8f-bd64-6c7481e8d7fe.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "96653918-d646-4e94-bae7-3b5faab6cb0c",
+      "timestamp": "2026-10-10T00:03:32.792Z",
+      "command": "T=/Users/dj_workstation/.claude/jobs/96653918/tmp/fftest; rm -rf $T; mkdir -p $T; cd $T && git init -q -b main r && cd r && git config user.email t@e && git config user.name t && echo base > a.md && mkdir -p m && echo old > m/obs.md && git add -A && git commit -qm init && echo new > m/obs.md && echo wl > w.md && git rm -q --cached a.md && rm a.md && git status --short && git stash list >/dev/null; \\\n# build branch commit containing the same changes via temp index\nGIT_INDEX_FILE=$T/idx git read-tree HEAD && GIT_INDEX_FILE=$T/idx git update-index --add --remove -- m/obs.md w.md a.md && tree=$(GIT_INDEX_FILE=$T/idx git write-tree) && c=$(git commit-tree $tree -p HEAD -m squash) && git branch target $c; \\\ngit reset -q; echo \"--- before staging:\"; git status --short; git merge --ff-only target 2>&1 | tail -3; \\\necho \"--- stage identical into real index:\"; git update-index --add --remove -- m/obs.md w.md a.md; git status --short; git merge --ff-only target 2>&1 | tail -3; git status --short; git log --oneline -1",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-2026-10-10-closed-day-closer/96653918-d646-4e94-bae7-3b5faab6cb0c.jsonl",
+      "status": "skip"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b27e8b40-3d42-4212-8bb8-03b7f70ebeef",
+      "timestamp": "2026-10-05T01:16:12.707Z",
+      "command": "cat > /Users/dj_workstation/.claude/jobs/b27e8b40/tmp/commit.sh <<'EOF'\n#!/bin/zsh\nset -e\ncd /Users/dj_workstation/Code/Exocortex-personal\ngit checkout -b content/2026-10-05 main\ngit add rules/CTX_ENVIRONMENTS.md rules/ENVIRONMENT.md rules/USER.md rules/WORKSPACE.md rules/axioms/ rules/environment/devices.md rules/environment/toolchain.md memory/OBSERVATIONS.md\ngit commit -q -m \"mem: reflector 產出 — 2026-10-04（20 檔）\"\ngit log -1 --format='%h %s' ; git show --stat --format= HEAD | tail -1\nuv run --group contexts-index python -m infra.tools.contexts_index work_logs || echo \"WARN: index regen failed\"\ngit add contexts/archive contexts/work_logs inbox/reading_list.md memory/observations_archive/2026-W40.md infra/periodic_jobs/archive_pipeline/state/archival_history.jsonl infra/state/digest_history.jsonl\ngit commit -q -m \"content: 2026-10-04 archive 歸檔、W40 AI 用量週報與 cron 狀態\"\ngit log -1 --format='%h %s' ; git show --stat --format= HEAD | tail -1\ngit checkout main\ngit status --short\nEOF\nchmod +x /Users/dj_workstation/.claude/jobs/b27e8b40/tmp/commit.sh && /Users/dj_workstation/.claude/jobs/b27e8b40/tmp/commit.sh",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-onboard-followups-1005/b27e8b40-3d42-4212-8bb8-03b7f70ebeef.jsonl",
+      "status": "manual_compliance"
+    }
+  ]
+}

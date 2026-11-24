@@ -1,0 +1,27 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-11-22",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "9c907076-38de-45a2-8498-107fcf269f9b",
+      "timestamp": "2026-11-15T21:25:14.304Z",
+      "command": "git checkout -b content/2026-11-16 5f3103ce0ecbbd8b018ce16bae85e476a39ae198 2>&1 | tail -3 && git branch --show-current && for f in thought_review work_logs; do uv run --group contexts-index python -m infra.tools.contexts_index $f 2>&1 | tail -1; done; git status --short | head -30",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/9c907076-38de-45a2-8498-107fcf269f9b.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "d2289a1d-5019-4854-97ee-417cd52b7506",
+      "timestamp": "2026-11-18T08:21:35.084Z",
+      "command": "D=/Users/dj_workstation/.claude/jobs/d2289a1d/tmp/ref-demo; rm -rf \"$D\"; mkdir -p \"$D\"; cd \"$D\" && git init -q -b main && git -c user.name=demo -c user.email=demo@example.invalid commit -q --allow-empty -m \"init\" && git branch project/A && echo \"== 書桌現在攤著：$(git branch --show-current)\" && echo \"現況：進度 v1\" > /dev/null && BLOB=$(printf '## 現況\\n- 進度 v2\\n' | git hash-object -w --stdin) && export GIT_INDEX_FILE=\"$D/.tmp-index\" && git read-tree project/A && git update-index --add --cacheinfo 100644,$BLOB,projects/A/PROJECT.md && TREE=$(git write-tree) && unset GIT_INDEX_FILE && OLD=$(git rev-parse project/A) && NEW=$(git -c user.name=demo -c user.email=demo@example.invalid commit-tree $TREE -p $OLD -m \"project(A): update\") && git update-ref refs/heads/project/A $NEW $OLD && rm -f \"$D/.tmp-index\" && echo \"== 寫完後書桌還是攤著：$(git branch --show-current)\" && echo \"== 書桌上有 projects/ 嗎？\" && (ls projects 2>/dev/null || echo \"（沒有，書桌沒被動過）\") && echo \"== project/A 分支上：\" && git log --oneline project/A && git show project/A:projects/A/PROJECT.md",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-exocortex-multi-instance/d2289a1d-5019-4854-97ee-417cd52b7506.jsonl",
+      "status": "skip"
+    }
+  ]
+}

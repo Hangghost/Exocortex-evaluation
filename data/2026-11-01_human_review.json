@@ -1,0 +1,27 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-11-01",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "4cf32d53-03ff-4ef6-9b9c-c3e06ef5ad41",
+      "timestamp": "2026-10-31T22:41:56.087Z",
+      "command": "M=/Users/dj_workstation/Code/Exocortex-personal; C=$M/.claude/worktrees/checkpoint-content-phase-via-harness; P=$M/.claude/worktrees/zz-checkpoint-probe\ngit -C $C worktree remove --force $P && git -C $C branch -D project/zz-checkpoint-probe && git -C $M worktree list | grep -c zz- ; git -C $M branch --list 'project/zz-*' | wc -l\ncat > /Users/dj_workstation/.claude/jobs/4cf32d53/tmp/mk_sandbox.sh <<'EOF'\n#!/bin/sh\n# 用法: mk_sandbox.sh <sandbox 目錄> <來源 commit>\n# 以隔離 clone 建拋棄式容器：origin 指向拋棄式 bare repo，不碰真實 repo 的任何 ref／origin。\nset -e\nSB=\"$1\"; SRC=\"$2\"; C=/Users/dj_workstation/Code/Exocortex-personal/.claude/worktrees/checkpoint-content-phase-via-harness\nmkdir -p \"$SB\"\ngit init -q --bare -b main \"$SB/up.git\"\ngit clone -q --no-hardlinks \"$C\" \"$SB/main\"\ncd \"$SB/main\"\ngit config user.email probe@example.com; git config user.name Probe\ngit checkout -q -b main \"$SRC\"\ngit remote set-url origin \"$SB/up.git\"\ngit push -q -u origin main\ngit branch project/zz-checkpoint-probe main\ngit worktree add -q .claude/worktrees/zz-checkpoint-probe project/zz-checkpoint-probe\ncd .claude/worktrees/zz-checkpoint-probe\nmkdir -p projects/zz-checkpoint-probe\ncat > projects/zz-checkpoint-probe/PROJECT.md <<'EOP'\n---\nlast_updated: 2026-11-01\nstatus: active\nl0: 拋棄式探針專案，只為驗證 checkpoint content phase 的 Read 路徑\n---\n\n# zz-checkpoint-probe\n\n## 目標 / 動機\n\n驗證 `/ctx:project eod --checkpoint` 的 content phase 不載入 content.md。\n\n## 現況\n\n探針中。\n\n## 下一步\n\n- 無\nEOP\ngit add projects/zz-checkpoint-probe\ngit commit -q -m \"probe: zz-checkpoint-probe\"\nmkdir -p contexts/work_logs\ncat > contexts/work_logs/2026-11-01_zz-checkpoint-probe_probe.md <<'EOP'\n---\nl0: 探針用 work_log，驗證 checkpoint content phase\ndate: 2026-11-01\n---\n\n# 探針 work_log\n\n由 checkpoint-content-phase-via-harness 5.2 探針寫下。\nEOP\nuv sync --all-groups >/dev/null 2>&1\npwd -P\nEOF\nchmod +x /Users/dj_workstation/.claude/jobs/4cf32d53/tmp/mk_sandbox.sh\nSB=/tmp/ckpt-probe-4cf32d53-new; rm -rf $SB; /Users/dj_workstation/.claude/jobs/4cf32d53/tmp/mk_sandbox.sh $SB 1ac570270 && git -C $SB/main/.claude/worktrees/zz-checkpoint-probe status --short && git -C $SB/main/.claude/worktrees/zz-checkpoint-probe log --oneline -3",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-checkpoint-content-phase-via-harness/4cf32d53-03ff-4ef6-9b9c-c3e06ef5ad41.jsonl",
+      "status": "skip"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "66ea8a13-10bd-439b-a68d-f9c00ecd6908",
+      "timestamp": "2026-11-01T03:00:28.976Z",
+      "command": "cd /Users/dj_workstation/Code/exocortex-app && git checkout -b release/v0.2.0 && mkdir -p docs/releases && cp /Users/dj_workstation/.claude/jobs/66ea8a13/tmp/v0.2.0.md docs/releases/v0.2.0.md && BUMP=\"$(python3 ~/.claude/skills/dev-shared/scripts/tracker_config.py get build.version_bump_command)\" && VERSION_NUM=0.2.0 bash -c \"$BUMP\"; echo \"bump exit=$?\"; git diff --stat; git diff package.json",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-exocortex-app/66ea8a13-10bd-439b-a68d-f9c00ecd6908.jsonl",
+      "status": "manual_violation"
+    }
+  ]
+}

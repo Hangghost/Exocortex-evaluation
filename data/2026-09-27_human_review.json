@@ -1,0 +1,47 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-09-27",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "68ca5825-b301-466b-8119-a4e6d2088e0a",
+      "timestamp": "2026-09-21T02:36:24.083Z",
+      "command": "git branch feature/refresh-openspec-install-layer origin/feature/refresh-openspec-install-layer 2>&1 && git rev-list --left-right --count origin/feature/refresh-openspec-install-layer...feature/refresh-openspec-install-layer && echo \"(0 0 = 同步)\"",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/68ca5825-b301-466b-8119-a4e6d2088e0a.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "68ca5825-b301-466b-8119-a4e6d2088e0a",
+      "timestamp": "2026-09-21T03:02:52.388Z",
+      "command": "git checkout -b feature/pin-openspec-target-version main 2>&1 | tail -3 && git branch --show-current && echo \"=== 攜帶過來的檔案 ===\" && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/68ca5825-b301-466b-8119-a4e6d2088e0a.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "6f23991c-2556-4498-9ae6-ac6b41406b82",
+      "timestamp": "2026-09-21T09:05:46.603Z",
+      "command": "git status --short; echo \"=== 開分支（顯式 base main，per a09）===\"; git checkout -b feature/migrate-capture-surface-to-notion main 2>&1 | tail -5; echo \"=== 確認 ===\"; git branch --show-current; git rev-list --left-right --count main...HEAD; echo \"(main ahead / mine ahead — 應為 0 0)\"; git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/6f23991c-2556-4498-9ae6-ac6b41406b82.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "e99a69bd-d038-4c7c-bde4-d7d24346e385",
+      "timestamp": "2026-09-21T02:31:34.867Z",
+      "command": "git checkout -b content/2026-09-21 main 2>&1 && echo \"--- now on ---\" && git branch --show-current && echo \"--- upstream check (should be empty) ---\" && git rev-parse --abbrev-ref content/2026-09-21@{upstream} 2>&1 | head -2",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/e99a69bd-d038-4c7c-bde4-d7d24346e385.jsonl",
+      "status": "manual_compliance"
+    }
+  ]
+}

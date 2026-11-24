@@ -1,0 +1,27 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-10-25",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "9bfb6aa4-19d6-4264-afb5-4014f50cc940",
+      "timestamp": "2026-10-23T11:09:57.626Z",
+      "command": "uv run python -c \"\nfrom infra.harness.ctx_environment import resolve_command_environment\nfrom infra.harness.worktree_ops import preflight_branch_conflict\ne=resolve_command_environment('ctx:arch');print(e.env_code,e.status,e.worktree_branch)\nprint('conflict',preflight_branch_conflict('main'))\" && git symbolic-ref --quiet HEAD && git pull --ff-only origin main 2>&1 | tail -2 && git checkout -b feature/refine-ctx-next-output main && git status --short",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/9bfb6aa4-19d6-4264-afb5-4014f50cc940.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "b53f999f-3082-4459-b145-a48050113dc1",
+      "timestamp": "2026-10-19T08:31:19.290Z",
+      "command": "cd ~/Code/Exocortex-personal && git checkout -b feature/session-dispatch-incidents-1019 main && mkdir -p openspec/changes/session-dispatch-incidents-1019 && echo '{\"track\": \"trivial\"}' > openspec/changes/session-dispatch-incidents-1019/track.json && ls openspec/changes/archive | tail -3 && cat openspec/changes/archive/$(ls openspec/changes/archive | grep -v '^\\.' | tail -1)/proposal.md | head -30",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/b53f999f-3082-4459-b145-a48050113dc1.jsonl",
+      "status": "manual_compliance"
+    }
+  ]
+}

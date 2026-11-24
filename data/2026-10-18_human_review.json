@@ -1,0 +1,47 @@
+{
+  "axiom_id": "a09",
+  "scan_date": "2026-10-18",
+  "reviewed_at": "2026-11-24T10:32:29",
+  "reviewed": [
+    {
+      "axiom_id": "a09",
+      "session_id": "65cb0827-b489-4ea7-a14a-82ab281c5c69",
+      "timestamp": "2026-10-11T20:42:28.546Z",
+      "command": "git checkout -b content/2026-10-12 main && git add rules/ && git commit -q -m \"mem: reflector 產出 — 2026-10-11（26 檔）\" && git log -1 --format='%h %s' && git show --stat --format= HEAD | tail -1",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/65cb0827-b489-4ea7-a14a-82ab281c5c69.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "65cb0827-b489-4ea7-a14a-82ab281c5c69",
+      "timestamp": "2026-10-11T20:51:06.442Z",
+      "command": "git checkout -b feature/session-dispatch-landing-gate-incident main && mkdir -p openspec/changes/session-dispatch-landing-gate-incident",
+      "has_explicit_base": true,
+      "potential_violation": false,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal/65cb0827-b489-4ea7-a14a-82ab281c5c69.jsonl",
+      "status": "manual_compliance"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "90ab577f-5ec3-4338-acdc-c16cc2ee74bd",
+      "timestamp": "2026-10-11T22:19:59.862Z",
+      "command": "mkdir -p /Users/dj_workstation/.claude/jobs/90ab577f/tmp/lease && cat > /Users/dj_workstation/.claude/jobs/90ab577f/tmp/lease_probe.sh <<'EOF'\nset -e\nD=/Users/dj_workstation/.claude/jobs/90ab577f/tmp/lease\nrm -rf $D/*; cd $D\ngit init -q --bare -b main o.git; git clone -q o.git c 2>/dev/null; cd c\ngit -c user.email=a@b -c user.name=a commit -q --allow-empty -m a; git push -q origin main\ngit branch feature/x; git push -q origin feature/x\nS=$(git rev-parse feature/x)\ngit -c user.email=a@b -c user.name=a commit -q --allow-empty -m b; B=$(git rev-parse HEAD)\necho \"--- mismatch lease (expect reject)\"; git push --force-with-lease=refs/heads/feature/x:$B origin --delete feature/x; echo rc=$?\ngit ls-remote origin feature/x\necho \"--- matching lease\"; git push --force-with-lease=refs/heads/feature/x:$S origin --delete feature/x; echo rc=$?\ngit ls-remote origin feature/x; echo \"--- delete again (absent)\"; git push --force-with-lease=refs/heads/feature/x:$S origin --delete feature/x; echo rc=$?\nEOF\nbash +e /Users/dj_workstation/.claude/jobs/90ab577f/tmp/lease_probe.sh 2>&1 | sed 's/^/  /'",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-2026-10-12-debt-wave4-handoffkind/90ab577f-5ec3-4338-acdc-c16cc2ee74bd.jsonl",
+      "status": "skip"
+    },
+    {
+      "axiom_id": "a09",
+      "session_id": "12891467-8d06-41a2-b852-05752dbbb60d",
+      "timestamp": "2026-10-16T12:59:43.385Z",
+      "command": "sed -i '' \\\n -e '954s|既有兩個呼叫端（`content_commit.py`／`todos_commit.py`）未帶此引數，行為不受影響。|建立分支的路徑一律經 `creation_base` 帶入 `date`（它同時驅動 `unlanded` 盤點）。|' \\\n -e '960s|以 `verdict.ref`（恆為 `\"main\"`）建立|以 `base_sha` 建立（main 系部分恆為 `\"main\"`）|' \\\n -e '962s|以 `verdict.ref`（`\"origin/main\"`）建立，不輸出額外訊息|以 `base_sha` 建立（main 系部分為 `\"origin/main\"`），除 `base_note` 外不輸出額外訊息|' \\\n -e '963s|以 `verdict.ref`（`\"main\"`）建立，行為與本段引入前逐字相同|以 `base_sha` 建立（main 系部分為 `\"main\"`）；無未落地前日時行為與本段引入前逐字相同|' \\\n -e '1090s|取得 `verdict.ref`|取得 `base_sha`|' \\\n -e '1093s|git checkout -b content/YYYY-MM-DD <verdict.ref>   # verdict.ref：origin/main 或 main，見 4.0b|git checkout -b content/YYYY-MM-DD <base_sha>   # base_sha：建立底（main 系 commit 或納入前日的合成 commit），見 4.0b|' \\\n .claude/commands/ctx/content.md && sed -n '954p;960p;962p;963p;1090p;1093p' .claude/commands/ctx/content.md",
+      "has_explicit_base": false,
+      "potential_violation": true,
+      "source_path": "/Users/dj_workstation/.claude/projects/-Users-dj-workstation-Code-Exocortex-personal--claude-worktrees-2026-10-16-debt-wave11-forkapply/12891467-8d06-41a2-b852-05752dbbb60d.jsonl",
+      "status": "skip"
+    }
+  ]
+}
